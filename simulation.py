@@ -1,5 +1,6 @@
 import argparse
-import Customer from customer
+import random
+from customer import Customer
 
 
 class Simulation():
@@ -157,7 +158,7 @@ def runTrials(numTrials=10, numCustomers=10, verbose=True):
 
     print
     print '-'*79
-    print "Averages for %d Completed Trials (%d Customers per Trial):" % (numTrials, numCustomersPerTrial)
+    print "Averages for %d Completed Trials (%d Customers per Trial):" % (numTrials, numCustomers)
     print '-'*79
     print "%60s:  %5.2f  minutes" % ("Average waiting time for all customers", averageWaitingTime)
     print "%60s:  %5.2f  minutes" % ("Average waiting time for customers who wait", averageWaitingTimeWhoWait)
