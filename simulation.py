@@ -1,4 +1,4 @@
-import argparse
+# import argparse
 import random
 from customer import Customer
 
@@ -120,75 +120,78 @@ class Simulation():
         print "%60s:  %5d  %%" % ("Percentage of time server is idle", self.idleProbability * 100)
 
 
-def runTrials(numTrials=10, numCustomers=10, verbose=True):
-    averageWaitingTime = 0
-    averageWaitingTimeWhoWait = 0
-    averageServiceTime = 0
-    averageInterarrrivalTime = 0
-    averageSystemTime = 0
-    waitProbability = 0
-    idleProbability = 0
-    trials = []
+# def runTrials(numTrials=10, numCustomers=10, verbose=True):
+#     averageWaitingTime = 0
+#     averageWaitingTimeWhoWait = 0
+#     averageServiceTime = 0
+#     averageInterarrrivalTime = 0
+#     averageSystemTime = 0
+#     waitProbability = 0
+#     idleProbability = 0
+#     trials = []
 
-    for i in range(numTrials):
-        trial = Simulation(numCustomers)
+#     for i in range(numTrials):
+#         trial = Simulation(numCustomers)
 
-        if (verbose):
-            print
-            print "Trial %d" % (i + 1)
-            trial.display()
+#         if (verbose):
+#             print
+#             print "Trial %d" % (i + 1)
+#             trial.display()
 
-        trials.append(trial)
+#         trials.append(trial)
 
-        averageWaitingTime += trial.averageWaitingTime
-        averageWaitingTimeWhoWait += trial.averageWaitingTimeWhoWait
-        averageServiceTime += trial.averageServiceTime
-        averageInterarrrivalTime += trial.averageInterarrrivalTime
-        averageSystemTime += trial.averageSystemTime
-        waitProbability += trial.waitProbability
-        idleProbability += trial.idleProbability
+#         averageWaitingTime += trial.averageWaitingTime
+#         averageWaitingTimeWhoWait += trial.averageWaitingTimeWhoWait
+#         averageServiceTime += trial.averageServiceTime
+#         averageInterarrrivalTime += trial.averageInterarrrivalTime
+#         averageSystemTime += trial.averageSystemTime
+#         waitProbability += trial.waitProbability
+#         idleProbability += trial.idleProbability
 
-    averageWaitingTime /= numTrials
-    averageWaitingTimeWhoWait /= numTrials
-    averageServiceTime /= numTrials
-    averageInterarrrivalTime /= numTrials
-    averageSystemTime /= numTrials
-    waitProbability /= numTrials
-    idleProbability /= numTrials
+#     averageWaitingTime /= numTrials
+#     averageWaitingTimeWhoWait /= numTrials
+#     averageServiceTime /= numTrials
+#     averageInterarrrivalTime /= numTrials
+#     averageSystemTime /= numTrials
+#     waitProbability /= numTrials
+#     idleProbability /= numTrials
 
-    print
-    print '-'*79
-    print "Averages for %d Completed Trials (%d Customers per Trial):" % (numTrials, numCustomers)
-    print '-'*79
-    print "%60s:  %5.2f  minutes" % ("Average waiting time for all customers", averageWaitingTime)
-    print "%60s:  %5.2f  minutes" % ("Average waiting time for customers who wait", averageWaitingTimeWhoWait)
-    print "%60s:  %5.2f  minutes" % ("Average service time", averageServiceTime)
-    print "%60s:  %5.2f  minutes" % ("Average time between arrivals", averageInterarrrivalTime)
-    print "%60s:  %5.2f  minutes" % ("Average time each customer spends in system", averageSystemTime)
-    print "%60s:  %5d  %%" % ("Probability a customer has to wait in the queue", waitProbability * 100)
-    print "%60s:  %5d  %%" % ("Percentage of time server is idle", idleProbability * 100)
+#     print
+#     print '-'*79
+#     print "Averages for %d Completed Trials (%d Customers per Trial):" % (numTrials, numCustomers)
+#     print '-'*79
+#     print "%60s:  %5.2f  minutes" % ("Average waiting time for all customers", averageWaitingTime)
+#     print "%60s:  %5.2f  minutes" % ("Average waiting time for customers who wait", averageWaitingTimeWhoWait)
+#     print "%60s:  %5.2f  minutes" % ("Average service time", averageServiceTime)
+#     print "%60s:  %5.2f  minutes" % ("Average time between arrivals", averageInterarrrivalTime)
+#     print "%60s:  %5.2f  minutes" % ("Average time each customer spends in system", averageSystemTime)
+#     print "%60s:  %5d  %%" % ("Probability a customer has to wait in the queue", waitProbability * 100)
+#     print "%60s:  %5d  %%" % ("Percentage of time server is idle", idleProbability * 100)
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("trials", help="the number of trials to run", type=int, default=10)
-    parser.add_argument("customers", help="the number of customers in each trial", type=int, default=10)
-    parser.add_argument("-v", "--verbose", help="display statistics for each trial", action="store_true")
-    args = parser.parse_args()
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument("trials", help="the number of trials to run", type=int, default=10)
+    # parser.add_argument("customers", help="the number of customers in each trial", type=int, default=10)
+    # parser.add_argument("-v", "--verbose", help="display statistics for each trial", action="store_true")
+    # args = parser.parse_args()
 
-    numTrials = 10
-    numCustomersPerTrial = 10
+    # numTrials = 10
+    # numCustomersPerTrial = 10
 
-    if args.trials >= 1:
-        numTrials = args.trials
+    # if args.trials >= 1:
+    #     numTrials = args.trials
 
-    if args.customers >= 2:
-        numCustomersPerTrial = args.customers
+    # if args.customers >= 2:
+    #     numCustomersPerTrial = args.customers
 
-    displayStats = args.verbose
+    # displayStats = args.verbose
 
-    # run multiple trials and display averages
-    runTrials(numTrials, numCustomersPerTrial, displayStats)
+    # # run multiple trials and display averages
+    # runTrials(numTrials, numCustomersPerTrial, displayStats)
+
+    numCustomers = 100
+    Simulation(numCustomers)
 
 if __name__ == '__main__':
     main()
