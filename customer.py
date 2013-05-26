@@ -1,8 +1,12 @@
 class Customer():
-    def __init__(self, id, interarrivalTime, serviceTime, prevEndTime, clock):
+    def __init__(self, id, probInterarrivalTime, probServiceTime1, probServiceTime2, probBalk, prevEndTime, clock):
         self.id = id                                # order of arrival
-        self.interarrivalTime = interarrivalTime    # based on random value
-        self.serviceLength = serviceTime            # based on random value
+
+        # generate random values based on probability distributions
+        self.interarrivalTime = self.calcInterarrivalTime(probInterarrivalTime)
+        self.serviceTime1 = self.calcServiceTime1(probServiceTime1)
+        self.serviceTime2 = self.calcServiceTime2(probServiceTime2)
+        self.balk = self.calcBalk(probBalk)
 
         # previous arrivalTime + interarrivalTime
         self.arrivalTime = clock + self.interarrivalTime
@@ -13,8 +17,8 @@ class Customer():
         # serviceTimeBegins - arrivalTime
         self.waitingTimeInQueue = self.serviceTimeBegins - self.arrivalTime
 
-        # serviceTimeBegins + serviceLength
-        self.serviceTimeEnds = self.serviceTimeBegins + self.serviceLength
+        # serviceTimeBegins + serviceTime
+        self.serviceTimeEnds = self.serviceTimeBegins + self.serviceTime1
 
         # serviceTimeEnds - arrivalTime
         self.timeInSystem = self.serviceTimeEnds - self.arrivalTime
@@ -29,7 +33,9 @@ class Customer():
         values = (self.id,
                   self.interarrivalTime,
                   self.arrivalTime,
-                  self.serviceLength,
+                  self.serviceTime1,
+                  self.serviceTime2,
+                  self.balk,
                   self.serviceTimeBegins,
                   self.waitingTimeInQueue,
                   self.serviceTimeEnds,
@@ -43,3 +49,41 @@ class Customer():
             output += str(value)
 
         return output
+
+    def calcInterarrivalTime(self, probInterarrivalTime):
+        return 1
+        pass
+
+    def calcServiceTime1(self, probServiceTime1):
+        return 1
+        pass
+
+    def calcServiceTime2(self, probServiceTime2):
+        return 1
+        pass
+
+    def calcBalk(self, probBalk):
+        return False
+        pass
+
+
+def counter():
+    id = 1;
+    while True:
+        yield id
+        id += 1
+
+def main():
+    import random
+    id = counter()
+    num = 10
+    random.seed(1234)
+    for i in xrange(10):
+        probInterarrivalTime = random.random()
+        probServiceTime1 = random.random()
+        probServiceTime2 = random.random()
+        probBalk = random.random()
+        print Customer(id.next(), probInterarrivalTime, probServiceTime1, probServiceTime2, probBalk, 10, 20)
+
+if __name__ == '__main__':
+    main()
