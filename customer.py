@@ -1,5 +1,6 @@
 class Customer():
     def __init__(self, id, probInterarrivalTime, probServiceTime1, probServiceTime2, probBalk, prevEndTime, clock):
+        """Initializes customer data based on initial data."""
         self.id = id                                # order of arrival
 
         # generate random values based on probability distributions
@@ -30,6 +31,7 @@ class Customer():
         # clock += interarrivalTime
 
     def __str__(self):
+        """Used to generate a columned printout of customers."""
         values = (self.id,
                   self.interarrivalTime,
                   self.arrivalTime,
@@ -51,23 +53,39 @@ class Customer():
         return output
 
     def calcInterarrivalTime(self, probInterarrivalTime):
-        return 1
-        pass
+        """Maps a probability distribution to interrarrival times."""
+        if probInterarrivalTime < 0.2:
+            return 1
+        elif probInterarrivalTime >= 0.2 and probInterarrivalTime <= 0.6:
+            return 2
+        else:
+            return 3
 
     def calcServiceTime1(self, probServiceTime1):
-        return 1
-        pass
+        """Maps a probability distribution to serviceTime1."""
+        if probServiceTime1 < 0.2:
+            return 1
+        elif probServiceTime1 >= 0.2 and probServiceTime1 <= 0.6:
+            return 2
+        else:
+            return 3
 
     def calcServiceTime2(self, probServiceTime2):
-        return 1
-        pass
+        """Maps a probability distribution to serviceTime2."""
+        if probServiceTime2 < 0.2:
+            return 1
+        elif probServiceTime2 >= 0.2 and probServiceTime2 <= 0.6:
+            return 2
+        else:
+            return 3
 
     def calcBalk(self, probBalk):
-        return False
-        pass
+        """Maps a probability distribution to balk decision."""
+        return probBalk <= 0.5
 
 
 def counter():
+    """A generator that counts upwards from 1."""
     id = 1;
     while True:
         yield id
