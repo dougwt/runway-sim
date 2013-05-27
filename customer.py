@@ -1,33 +1,57 @@
 class Customer():
-    def __init__(self, id, probInterarrival, probService1, probService2, probBalk, prevEndTime, clock):
+    def __init__(self, id, probInterarrival, probService1, probService2, probBalk, prevCust, clock):
         """Initializes customer data based on initial data."""
         self.id = id                                # order of arrival
 
-        # generate random values based on probability distributions
+        if prevCust:
+            prevServiceTime1Begins = prevCust.serviceTime1Begins
+            prevServiceTime1Ends = prevCust.serviceTime1Ends
+            prevServiceTime2Begins = prevCust.serviceTime2Begins
+            prevServiceTime2Ends = prevCust.serviceTime2Ends
+        else:
+            prevServiceTime1Begins = 0
+            prevServiceTime1Ends = 0
+            prevServiceTime2Begins = 0
+            prevServiceTime2Ends = 0
+
+        # map random values to appropriate probability distributions
         self.interarrivalTime = self.calcInterarrivalTime(probInterarrival)
         self.serviceTime1 = self.calcServiceTime1(probService1)
         self.serviceTime2 = self.calcServiceTime2(probService2)
         self.balk = self.calcBalk(probBalk)
 
-        # previous arrivalTime + interarrivalTime
-        self.arrivalTime = clock + self.interarrivalTime
-
-        # max(arrival time, previous end time)
-        self.serviceTime1Begins = max(self.arrivalTime, prevEndTime)
-        self.serviceTime2Begins = 0
-
-        # serviceTimeBegins - arrivalTime
-        self.waitingTimeInQueue = self.serviceTime1Begins - self.arrivalTime
-
-        # serviceTimeBegins + serviceTime
+        # Q1/S1
+        self.arrivalTime1 = clock + self.interarrivalTime
+        self.serviceTime1Begins = max(self.arrivalTime1, prevServiceTime1Ends)
         self.serviceTime1Ends = self.serviceTime1Begins + self.serviceTime1
-        self.serviceTime2Ends = 0
 
-        # serviceTimeEnds - arrivalTime
-        self.timeInSystem = self.serviceTime1Ends - self.arrivalTime
+        # Q2/S2
+        if self.balk is False:
+            self.arrivalTime2 = self.serviceTime1Ends
+            self.serviceTime2Begins = max(self.arrivalTime2, prevServiceTime2Ends)
+            self.serviceTime2Ends = self.serviceTime2Begins + self.serviceTime2
 
-        # serviceTimeBegins - previous end time
-        self.idleTime = self.serviceTime1Begins - prevEndTime
+            # serviceTimeBegins - arrivalTime1
+            self.waitingTimeInQueue = self.serviceTime1Begins - self.arrivalTime1 + self.serviceTime2Begins - self.arrivalTime2
+
+            # serviceTimeEnds - arrivalTime1
+            self.timeInSystem = self.serviceTime2Ends - self.arrivalTime1
+
+            # serviceTimeBegins - previous end time
+            self.idleTime = (self.serviceTime1Begins - prevServiceTime1Ends) + (self.serviceTime2Begins - prevServiceTime2Ends)
+        else:
+            self.arrivalTime2 = self.serviceTime1Ends
+            self.serviceTime2Begins = prevServiceTime2Begins
+            self.serviceTime2Ends = prevServiceTime2Ends
+
+            # serviceTimeBegins - arrivalTime1
+            self.waitingTimeInQueue = self.serviceTime1Begins - self.arrivalTime1
+
+            # serviceTimeEnds - arrivalTime1
+            self.timeInSystem = self.serviceTime1Ends - self.arrivalTime1
+
+            # serviceTimeBegins - previous end time
+            self.idleTime = (self.serviceTime1Begins - prevServiceTime1Ends)
 
         # increments current clock time
         # clock += interarrivalTime
@@ -36,17 +60,16 @@ class Customer():
         """Used to generate a columned printout of customers."""
         values = (self.id,
                   self.interarrivalTime,
-                  self.arrivalTime,
+                  self.arrivalTime1,
                   self.serviceTime1,
                   self.serviceTime2,
-                  self.balk,
+                  'Yes' if self.balk else 'No',
                   self.serviceTime1Begins,
                   self.serviceTime1Ends,
-                  self.serviceTime2Begins,
-                  self.serviceTime2Ends,
+                  self.serviceTime2Begins if not self.balk else '--',
+                  self.serviceTime2Ends if not self.balk else '--',
                   self.waitingTimeInQueue,
                   self.timeInSystem)
-                  # self.idleTime)
 
         values = [str(i).center(10) for i in values]
 

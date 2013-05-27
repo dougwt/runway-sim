@@ -6,8 +6,16 @@ class Simulation():
     def __init__(self, numCustomers=100):
         """Initializes the simulation."""
         self.numCustomers = numCustomers
-        self.clock = 0
         self.queue = []
+
+        # initialize State Variables
+        self.clock = 0
+        self.Idle = 0
+        self.Busy = 1
+        self.s1 = self.Idle
+        self.s2 = self.Idle
+        self.q1 = 0
+        self.q2 = 0
 
         # additional values to be calculated during simulation
         self.averageWaitingTime = 0         # average waiting time for all customers
@@ -17,24 +25,46 @@ class Simulation():
         self.averageSystemTime = 0          # average total system time for all customers
         self.waitProbability = 0            # probability a customer has to wait
         self.idleProbability = 0            # percentage of time server is idle
+        self.q1sizes = {}
+        self.q2sizes = {}
 
         self.populate()
 
     def populate(self):
         """Populates Q1 with the pool of Customers."""
         for i in range(self.numCustomers):
-            probInterarrival, probService1, probService2, probBalk = self.generateRandomValues()
+            self.generateCustomer(i)
 
-            if (i == 0):
-                prevEndTime = 0
-            else:
-                prevEndTime = self.queue[i-1].serviceTime1Ends
-
-            # customer = Customer(i+1, interarrivalTime, serviceTime, prevEndTime, self.clock)
-            customer = Customer(i+1, probInterarrival, probService1, probService2, probBalk, prevEndTime, self.clock)
-            self.queue.append(customer)
-            self.clock = customer.arrivalTime
         self.calculateStats()
+        # print 'Q1:', self.q1sizes
+        # print 'Q2:', self.q2sizes
+
+    def generateCustomer(self, i):
+        """Generates a new customer and processes it through Q1 and Q2."""
+        # generate and unpack random values used for the new customer
+        probInterarrival, probService1, probService2, probBalk = self.generateRandomValues()
+
+        # if this is the first iteration, there is no previous customer
+        if (i == 0):
+            prevCust = None
+        else:
+            prevCust = self.queue[i-1]
+
+        # generate a new Customer and store it into the system queue
+        id = i + 1
+        customer = Customer(id, probInterarrival, probService1, probService2, probBalk, prevCust, self.clock)
+        self.queue.append(customer)
+
+        # update clock to the time the customer first arrives in the system
+        self.clock = customer.arrivalTime1
+
+        # determine sizes of q1 and q2 at time of arrivals
+        self.q1 = len([x for x in self.queue[:-1] if x.serviceTime1Ends > customer.arrivalTime1])
+        self.q2 = len([x for x in self.queue[:-1] if x.serviceTime2Ends > customer.arrivalTime2])
+
+        # store queue sizes for later display
+        self.q1sizes[id] = self.q1
+        self.q2sizes[id] = self.q2
 
     def generateRandomValues(self):
         """Generates random value for Customer creation."""
@@ -106,8 +136,10 @@ class Simulation():
                    ('S2 End', 'Time'),
                    ('Waiting', 'Time'),
                    ('System', 'Time'),
-                   ('S1', 'Idle'),
-                   ('S2', 'Idle'))
+                   ('Q1', 'Size'),
+                   ('Q2', 'Size'))
+                   # ('S1', 'Idle'),
+                   # ('S2', 'Idle'))
                    # ('Idle', 'Time'))
 
         headers1, headers2 = zip(*headers)
@@ -130,18 +162,18 @@ class Simulation():
 
         # print row for each customer
         for customer in self.queue:
-            s1idle = False
-            s2idle = True
-            print '%s%s%s' % (customer, str(s1idle).center(field_width), str(s2idle).center(field_width))
+            q1size = self.q1sizes[customer.id]
+            q2size = self.q2sizes[customer.id]
+            print '%s%s%s' % (customer, str(q1size).center(field_width), str(q2size).center(field_width))
 
-        print
-        print "%60s:  %5.2f  minutes" % ("Average waiting time for all customers", self.averageWaitingTime)
-        print "%60s:  %5.2f  minutes" % ("Average waiting time for customers who wait", self.averageWaitingTimeWhoWait)
-        print "%60s:  %5.2f  minutes" % ("Average service time", self.averageServiceTime)
-        print "%60s:  %5.2f  minutes" % ("Average time between arrivals", self.averageInterarrrivalTime)
-        print "%60s:  %5.2f  minutes" % ("Average time each customer spends in system", self.averageSystemTime)
-        print "%60s:  %5d  %%" % ("Probability a customer has to wait in the queue", self.waitProbability * 100)
-        print "%60s:  %5d  %%" % ("Percentage of time server is idle", self.idleProbability * 100)
+        # print
+        # print "%60s:  %5.2f  minutes" % ("Average waiting time for all customers", self.averageWaitingTime)
+        # print "%60s:  %5.2f  minutes" % ("Average waiting time for customers who wait", self.averageWaitingTimeWhoWait)
+        # print "%60s:  %5.2f  minutes" % ("Average service time", self.averageServiceTime)
+        # print "%60s:  %5.2f  minutes" % ("Average time between arrivals", self.averageInterarrrivalTime)
+        # print "%60s:  %5.2f  minutes" % ("Average time each customer spends in system", self.averageSystemTime)
+        # print "%60s:  %5d  %%" % ("Probability a customer has to wait in the queue", self.waitProbability * 100)
+        # print "%60s:  %5d  %%" % ("Percentage of time server is idle", self.idleProbability * 100)
 
 
 # def runTrials(numTrials=10, numCustomers=10, verbose=True):
@@ -204,16 +236,6 @@ def main():
     numCustomers = 10
     sim = Simulation(numCustomers)
     sim.display()
-
-    # id = Customer.counter()
-    # num = 10
-    # random.seed(1234)
-    # for i in xrange(10):
-    #     probInterarrivalTime = random.random()
-    #     probServiceTime1 = random.random()
-    #     probServiceTime2 = random.random()
-    #     probBalk = random.random()
-    #     print Customer(id.next(), probInterarrivalTime, probServiceTime1, probServiceTime2, probBalk, 10, 20)
 
 if __name__ == '__main__':
     main()
