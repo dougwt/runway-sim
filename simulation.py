@@ -25,6 +25,8 @@ class Simulation():
         self.averageSystemTime = 0          # average total system time for all customers
         self.waitProbability = 0            # probability a customer has to wait
         self.idleProbability = 0            # percentage of time server is idle
+        self.averageQ1Time = 0
+        self.averageQ2Time = 0
         self.q1sizes = {}
         self.q2sizes = {}
 
@@ -98,29 +100,48 @@ class Simulation():
         totalSystemTime = 0
         totalIdleTime = 0
         totalIterarrivalTime = 0
-        totalSimulationTime = self.queue[-1].serviceTime1Ends
+        lastCust = self.queue[-1]
+        totalSimulationTime = lastCust.serviceTime2Ends if not lastCust.balk else lastCust.serviceTime1Ends
         numCustomersWhoWait = 0
+        totalQ1WaitTime = 0
+        totalQ2WaitTime = 0
+        numCustomersQ1 = 0
+        numCustomersQ2 = 0
 
         # iterate through each customer in the queue
         for customer in self.queue:
             totalWaitingTime += customer.totalWait
-            totalIdleTime += customer.idleTime
-            totalServiceTime += customer.serviceTime1
+            # totalIdleTime += customer.idleTime
+            totalServiceTime += customer.serviceTime1 + customer.serviceTime2
             totalIterarrivalTime += customer.interarrivalTime
             totalSystemTime += customer.timeInSystem
 
             if customer.totalWait > 0:
                 numCustomersWhoWait += 1
 
+            if customer.waitTime1 > 0:
+                numCustomersQ1 += 1
+
+            totalQ1WaitTime += customer.waitTime1
+            if customer.balk is False:
+                totalQ2WaitTime += customer.waitTime2
+                if customer.waitTime2 > 0:
+                    numCustomersQ2 += 1
+
         # calculate the averages/etc
-        self.averageWaitingTime = totalWaitingTime / self.numCustomers
+        self.averageQ1Time = totalQ1WaitTime / float(self.numCustomers)
+        self.averageQ2Time = totalQ2WaitTime / float(numCustomersWhoWait)
+
+        self.averageWaitingTime = totalWaitingTime / float(self.numCustomers)
         if numCustomersWhoWait > 0:
-            self.averageWaitingTimeWhoWait = totalWaitingTime / numCustomersWhoWait
-        self.averageServiceTime = totalServiceTime / self.numCustomers
-        self.averageInterarrrivalTime = totalIterarrivalTime / (self.numCustomers - 1)
-        self.averageSystemTime = totalSystemTime / self.numCustomers
-        self.waitProbability = numCustomersWhoWait / self.numCustomers
-        self.idleProbability = totalIdleTime / totalSimulationTime
+            self.averageWaitingTimeWhoWait = totalWaitingTime / float(numCustomersWhoWait)
+        self.averageServiceTime = totalServiceTime / float(self.numCustomers)
+        self.averageInterarrrivalTime = totalIterarrivalTime / float(self.numCustomers - 1)
+        self.averageSystemTime = totalSystemTime / float(self.numCustomers)
+        self.waitProbability = numCustomersWhoWait / float(self.numCustomers)
+        self.wait1Probability = numCustomersQ1 / float(self.numCustomers)
+        self.wait2Probability = numCustomersQ2 / float(self.numCustomers)
+        # self.idleProbability = totalIdleTime / float(totalSimulationTime)
 
     def display(self):
         """Displays an event log of activity."""
@@ -168,76 +189,97 @@ class Simulation():
             q2size = self.q2sizes[customer.id]
             print '%s%s%s' % (customer, str(q1size).center(field_width), str(q2size).center(field_width))
 
-        # print
-        # print "%60s:  %5.2f  minutes" % ("Average waiting time for all customers", self.averageWaitingTime)
-        # print "%60s:  %5.2f  minutes" % ("Average waiting time for customers who wait", self.averageWaitingTimeWhoWait)
-        # print "%60s:  %5.2f  minutes" % ("Average service time", self.averageServiceTime)
-        # print "%60s:  %5.2f  minutes" % ("Average time between arrivals", self.averageInterarrrivalTime)
-        # print "%60s:  %5.2f  minutes" % ("Average time each customer spends in system", self.averageSystemTime)
-        # print "%60s:  %5d  %%" % ("Probability a customer has to wait in the queue", self.waitProbability * 100)
+        print
+        print "%60s:  %5.2f  minutes" % ("Average Q1 wait time", self.averageQ1Time)
+        print "%60s:  %5.2f  minutes" % ("Average Q2 wait time", self.averageQ2Time)
+        print
+        print "%60s:  %5.2f  minutes" % ("Average total waiting time for all customers", self.averageWaitingTime)
+        print "%60s:  %5.2f  minutes" % ("Average waiting time for customers who wait", self.averageWaitingTimeWhoWait)
+        print "%60s:  %5.2f  minutes" % ("Average total service time", self.averageServiceTime)
+        print "%60s:  %5.2f  minutes" % ("Average time between arrivals", self.averageInterarrrivalTime)
+        print "%60s:  %5.2f  minutes" % ("Average time each customer spends in system", self.averageSystemTime)
+        print "%60s:  %5d  %%" % ("Probability a customer has to wait in Q1", self.wait1Probability * 100)
+        print "%60s:  %5d  %%" % ("Probability a customer has to wait in Q2", self.wait2Probability * 100)
         # print "%60s:  %5d  %%" % ("Percentage of time server is idle", self.idleProbability * 100)
 
 
-# def runTrials(numTrials=10, numCustomers=10, verbose=True):
-#     averageWaitingTime = 0
-#     averageWaitingTimeWhoWait = 0
-#     averageServiceTime = 0
-#     averageInterarrrivalTime = 0
-#     averageSystemTime = 0
-#     waitProbability = 0
-#     idleProbability = 0
-#     trials = []
+def runTrials(numTrials=10, numCustomers=10, verbose=True):
+    averageQ1Time = 0
+    averageQ2Time = 0
+    averageWaitingTime = 0
+    averageWaitingTimeWhoWait = 0
+    averageServiceTime = 0
+    averageInterarrrivalTime = 0
+    averageSystemTime = 0
+    waitProbability = 0
+    wait1Probability = 0
+    wait2Probability = 0
+    idleProbability = 0
+    trials = []
 
-#     for i in range(numTrials):
-#         trial = Simulation(numCustomers)
+    for i in range(numTrials):
+        trial = Simulation(numCustomers)
 
-#         if (verbose):
-#             print
-#             print "Trial %d" % (i + 1)
-#             trial.display()
+        if (verbose):
+            print
+            print "Trial %d" % (i + 1)
+            trial.display()
 
-#         trials.append(trial)
+        trials.append(trial)
 
-#         averageWaitingTime += trial.averageWaitingTime
-#         averageWaitingTimeWhoWait += trial.averageWaitingTimeWhoWait
-#         averageServiceTime += trial.averageServiceTime
-#         averageInterarrrivalTime += trial.averageInterarrrivalTime
-#         averageSystemTime += trial.averageSystemTime
-#         waitProbability += trial.waitProbability
-#         idleProbability += trial.idleProbability
+        averageQ1Time += trial.averageQ1Time
+        averageQ2Time += trial.averageQ2Time
+        averageWaitingTime += trial.averageWaitingTime
+        averageWaitingTimeWhoWait += trial.averageWaitingTimeWhoWait
+        averageServiceTime += trial.averageServiceTime
+        averageInterarrrivalTime += trial.averageInterarrrivalTime
+        averageSystemTime += trial.averageSystemTime
+        waitProbability += trial.waitProbability
+        wait1Probability += trial.wait1Probability
+        wait2Probability += trial.wait2Probability
+        idleProbability += trial.idleProbability
 
-#     averageWaitingTime /= numTrials
-#     averageWaitingTimeWhoWait /= numTrials
-#     averageServiceTime /= numTrials
-#     averageInterarrrivalTime /= numTrials
-#     averageSystemTime /= numTrials
-#     waitProbability /= numTrials
-#     idleProbability /= numTrials
+    numTrials = float(numTrials)
+    averageQ1Time /= numTrials
+    averageWaitingTime /= numTrials
+    averageWaitingTime /= numTrials
+    averageWaitingTimeWhoWait /= numTrials
+    averageServiceTime /= numTrials
+    averageInterarrrivalTime /= numTrials
+    averageSystemTime /= numTrials
+    waitProbability /= numTrials
+    wait1Probability /= numTrials
+    wait2Probability /= numTrials
+    idleProbability /= numTrials
 
-#     print
-#     print '-'*79
-#     print "Averages for %d Completed Trials (%d Customers per Trial):" % (numTrials, numCustomers)
-#     print '-'*79
-#     print "%60s:  %5.2f  minutes" % ("Average waiting time for all customers", averageWaitingTime)
-#     print "%60s:  %5.2f  minutes" % ("Average waiting time for customers who wait", averageWaitingTimeWhoWait)
-#     print "%60s:  %5.2f  minutes" % ("Average service time", averageServiceTime)
-#     print "%60s:  %5.2f  minutes" % ("Average time between arrivals", averageInterarrrivalTime)
-#     print "%60s:  %5.2f  minutes" % ("Average time each customer spends in system", averageSystemTime)
-#     print "%60s:  %5d  %%" % ("Probability a customer has to wait in the queue", waitProbability * 100)
-#     print "%60s:  %5d  %%" % ("Percentage of time server is idle", idleProbability * 100)
+    print
+    print '-'*79
+    print "Averages for %d Completed Trials (%d Customers per Trial):" % (numTrials, numCustomers)
+    print '-'*79
+    print "%60s:  %5.2f  minutes" % ("Average Q1 wait time", averageQ1Time)
+    print "%60s:  %5.2f  minutes" % ("Average Q2 wait time", averageQ2Time)
+    print
+    print "%60s:  %5.2f  minutes" % ("Average total waiting time for all customers", averageWaitingTime)
+    print "%60s:  %5.2f  minutes" % ("Average waiting time for customers who wait", averageWaitingTimeWhoWait)
+    print "%60s:  %5.2f  minutes" % ("Average total service time", averageServiceTime)
+    print "%60s:  %5.2f  minutes" % ("Average time between arrivals", averageInterarrrivalTime)
+    print "%60s:  %5.2f  minutes" % ("Average time each customer spends in system", averageSystemTime)
+    print "%60s:  %5d  %%" % ("Probability a customer has to wait in Q1", wait1Probability * 100)
+    print "%60s:  %5d  %%" % ("Probability a customer has to wait in Q2", wait2Probability * 100)
+    # print "%60s:  %5d  %%" % ("Percentage of time server is idle", idleProbability * 100)
 
 
 def main():
-    # numTrials = 10
-    # numCustomersPerTrial = 10
-    # displayStats = True
+    numTrials = 3
+    numCustomersPerTrial = 10
+    displayStats = True
 
-    # # run multiple trials and display averages
-    # runTrials(numTrials, numCustomersPerTrial, displayStats)
+    # run multiple trials and display averages
+    runTrials(numTrials, numCustomersPerTrial, displayStats)
 
-    numCustomers = 10
-    sim = Simulation(numCustomers)
-    sim.display()
+    # numCustomers = 10
+    # sim = Simulation(numCustomers)
+    # sim.display()
 
 if __name__ == '__main__':
     main()
