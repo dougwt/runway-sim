@@ -1,10 +1,10 @@
-# import argparse
 import random
 from customer import Customer
 
 
 class Simulation():
     def __init__(self, numCustomers=100):
+        """Initializes the simulation."""
         self.numCustomers = numCustomers
         self.clock = 0
         self.queue = []
@@ -21,26 +21,32 @@ class Simulation():
         self.populate()
 
     def populate(self):
+        """Populates Q1 with the pool of Customers."""
         for i in range(self.numCustomers):
-            interarrivalTime, serviceTime = self.generateRandomValues()
+            probInterarrival, probService1, probService2, probBalk = self.generateRandomValues()
 
             if (i == 0):
                 prevEndTime = 0
             else:
-                prevEndTime = self.queue[i-1].serviceTimeEnds
+                prevEndTime = self.queue[i-1].serviceTime1Ends
 
-            customer = Customer(i+1, interarrivalTime, serviceTime, prevEndTime, self.clock)
+            # customer = Customer(i+1, interarrivalTime, serviceTime, prevEndTime, self.clock)
+            customer = Customer(i+1, probInterarrival, probService1, probService2, probBalk, prevEndTime, self.clock)
             self.queue.append(customer)
             self.clock = customer.arrivalTime
         self.calculateStats()
 
     def generateRandomValues(self):
-        interarrivalTime = self.determineServiceTime(random.randrange(1, 101))
-        serviceTime = random.randrange(1, 9)
-        # print "(" + str(interarrivalTime) + "," + str(serviceTime) + ")"
-        return (interarrivalTime, serviceTime)
+        """Generates random value for Customer creation."""
+        # probInterarrival = self.determineServiceTime(random.randrange(1, 101))
+        probInterarrival = random.random()
+        probService1 = random.random()
+        probService2 = random.random()
+        probBalk = random.random()
+        return (probInterarrival, probService1, probService2, probBalk)
 
     def determineServiceTime(self, interarrivalRandom):
+        """Determines service time based on interarrivalRandom."""
         if(interarrivalRandom <= 10):
             return 1
         elif(interarrivalRandom >= 11 and interarrivalRandom <= 30):
@@ -55,20 +61,21 @@ class Simulation():
             return 6
 
     def calculateStats(self):
+        """Calculates total and average stats."""
         # temporary variables used for calculating averages/etc
         totalWaitingTime = 0
         totalServiceTime = 0
         totalSystemTime = 0
         totalIdleTime = 0
         totalIterarrivalTime = 0
-        totalSimulationTime = self.queue[-1].serviceTimeEnds
+        totalSimulationTime = self.queue[-1].serviceTime1Ends
         numCustomersWhoWait = 0
 
         # iterate through each customer in the queue
         for customer in self.queue:
             totalWaitingTime += customer.waitingTimeInQueue
             totalIdleTime += customer.idleTime
-            totalServiceTime += customer.serviceLength
+            totalServiceTime += customer.serviceTime1
             totalIterarrivalTime += customer.interarrivalTime
             totalSystemTime += customer.timeInSystem
 
@@ -86,21 +93,36 @@ class Simulation():
         self.idleProbability = totalIdleTime / totalSimulationTime
 
     def display(self):
+        """Displays an event log of activity."""
+        headers = (('Customer', '#'),
+                   ('InterArr', 'Time'),
+                   ('Arrival', 'Time'),
+                   ('S1', 'Time'),
+                   ('S2', 'Time'),
+                   ('Balk', 'Decision'),
+                   ('S1 Start', 'Time'),
+                   ('S1 End', 'Time'),
+                   ('S2 Start', 'Time'),
+                   ('S2 End', 'Time'),
+                   ('Waiting', 'Time'),
+                   ('System', 'Time'),
+                   ('S1', 'Idle'),
+                   ('S2', 'Idle'))
+                   # ('Idle', 'Time'))
+
+        headers1, headers2 = zip(*headers)
+
         field_width = 10  # number of characters per field_width
-        columns = 9  # number of columnds to be displayed
+        columns = len(headers)
 
         # horizontal line
         print '-' * field_width * columns
 
-        # 1st line of header column
-        headers = ('Customer', 'InterArr', 'Arrival', 'Service', 'Begin', 'Waiting', 'End', 'System', 'Idle')
-        headers = [i.center(field_width) for i in headers]
+        headers = [i.center(field_width) for i in headers1]
         print ''.join(headers)
 
         # 2nd line of header column
-        headers = ['#']
-        headers.extend(['Time'] * 8)
-        headers = [i.center(field_width) for i in headers]
+        headers = [i.center(field_width) for i in headers2]
         print ''.join(headers)
 
         # horizontal line
@@ -108,7 +130,9 @@ class Simulation():
 
         # print row for each customer
         for customer in self.queue:
-            print customer
+            s1idle = False
+            s2idle = True
+            print '%s%s%s' % (customer, str(s1idle).center(field_width), str(s2idle).center(field_width))
 
         print
         print "%60s:  %5.2f  minutes" % ("Average waiting time for all customers", self.averageWaitingTime)
@@ -170,28 +194,26 @@ class Simulation():
 
 
 def main():
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument("trials", help="the number of trials to run", type=int, default=10)
-    # parser.add_argument("customers", help="the number of customers in each trial", type=int, default=10)
-    # parser.add_argument("-v", "--verbose", help="display statistics for each trial", action="store_true")
-    # args = parser.parse_args()
-
     # numTrials = 10
     # numCustomersPerTrial = 10
-
-    # if args.trials >= 1:
-    #     numTrials = args.trials
-
-    # if args.customers >= 2:
-    #     numCustomersPerTrial = args.customers
-
-    # displayStats = args.verbose
+    # displayStats = True
 
     # # run multiple trials and display averages
     # runTrials(numTrials, numCustomersPerTrial, displayStats)
 
-    numCustomers = 100
-    Simulation(numCustomers)
+    numCustomers = 10
+    sim = Simulation(numCustomers)
+    sim.display()
+
+    # id = Customer.counter()
+    # num = 10
+    # random.seed(1234)
+    # for i in xrange(10):
+    #     probInterarrivalTime = random.random()
+    #     probServiceTime1 = random.random()
+    #     probServiceTime2 = random.random()
+    #     probBalk = random.random()
+    #     print Customer(id.next(), probInterarrivalTime, probServiceTime1, probServiceTime2, probBalk, 10, 20)
 
 if __name__ == '__main__':
     main()

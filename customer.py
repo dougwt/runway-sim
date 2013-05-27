@@ -1,31 +1,33 @@
 class Customer():
-    def __init__(self, id, probInterarrivalTime, probServiceTime1, probServiceTime2, probBalk, prevEndTime, clock):
+    def __init__(self, id, probInterarrival, probService1, probService2, probBalk, prevEndTime, clock):
         """Initializes customer data based on initial data."""
         self.id = id                                # order of arrival
 
         # generate random values based on probability distributions
-        self.interarrivalTime = self.calcInterarrivalTime(probInterarrivalTime)
-        self.serviceTime1 = self.calcServiceTime1(probServiceTime1)
-        self.serviceTime2 = self.calcServiceTime2(probServiceTime2)
+        self.interarrivalTime = self.calcInterarrivalTime(probInterarrival)
+        self.serviceTime1 = self.calcServiceTime1(probService1)
+        self.serviceTime2 = self.calcServiceTime2(probService2)
         self.balk = self.calcBalk(probBalk)
 
         # previous arrivalTime + interarrivalTime
         self.arrivalTime = clock + self.interarrivalTime
 
         # max(arrival time, previous end time)
-        self.serviceTimeBegins = max(self.arrivalTime, prevEndTime)
+        self.serviceTime1Begins = max(self.arrivalTime, prevEndTime)
+        self.serviceTime2Begins = 0
 
         # serviceTimeBegins - arrivalTime
-        self.waitingTimeInQueue = self.serviceTimeBegins - self.arrivalTime
+        self.waitingTimeInQueue = self.serviceTime1Begins - self.arrivalTime
 
         # serviceTimeBegins + serviceTime
-        self.serviceTimeEnds = self.serviceTimeBegins + self.serviceTime1
+        self.serviceTime1Ends = self.serviceTime1Begins + self.serviceTime1
+        self.serviceTime2Ends = 0
 
         # serviceTimeEnds - arrivalTime
-        self.timeInSystem = self.serviceTimeEnds - self.arrivalTime
+        self.timeInSystem = self.serviceTime1Ends - self.arrivalTime
 
         # serviceTimeBegins - previous end time
-        self.idleTime = self.serviceTimeBegins - prevEndTime
+        self.idleTime = self.serviceTime1Begins - prevEndTime
 
         # increments current clock time
         # clock += interarrivalTime
@@ -38,11 +40,13 @@ class Customer():
                   self.serviceTime1,
                   self.serviceTime2,
                   self.balk,
-                  self.serviceTimeBegins,
+                  self.serviceTime1Begins,
+                  self.serviceTime1Ends,
+                  self.serviceTime2Begins,
+                  self.serviceTime2Ends,
                   self.waitingTimeInQueue,
-                  self.serviceTimeEnds,
-                  self.timeInSystem,
-                  self.idleTime)
+                  self.timeInSystem)
+                  # self.idleTime)
 
         values = [str(i).center(10) for i in values]
 
@@ -52,29 +56,29 @@ class Customer():
 
         return output
 
-    def calcInterarrivalTime(self, probInterarrivalTime):
+    def calcInterarrivalTime(self, probInterarrival):
         """Maps a probability distribution to interrarrival times."""
-        if probInterarrivalTime < 0.2:
+        if probInterarrival < 0.2:
             return 1
-        elif probInterarrivalTime >= 0.2 and probInterarrivalTime <= 0.6:
+        elif probInterarrival >= 0.2 and probInterarrival <= 0.6:
             return 2
         else:
             return 3
 
-    def calcServiceTime1(self, probServiceTime1):
+    def calcServiceTime1(self, probService1):
         """Maps a probability distribution to serviceTime1."""
-        if probServiceTime1 < 0.2:
+        if probService1 < 0.2:
             return 1
-        elif probServiceTime1 >= 0.2 and probServiceTime1 <= 0.6:
+        elif probService1 >= 0.2 and probService1 <= 0.6:
             return 2
         else:
             return 3
 
-    def calcServiceTime2(self, probServiceTime2):
+    def calcServiceTime2(self, probService2):
         """Maps a probability distribution to serviceTime2."""
-        if probServiceTime2 < 0.2:
+        if probService2 < 0.2:
             return 1
-        elif probServiceTime2 >= 0.2 and probServiceTime2 <= 0.6:
+        elif probService2 >= 0.2 and probService2 <= 0.6:
             return 2
         else:
             return 3
@@ -97,11 +101,11 @@ def main():
     num = 10
     random.seed(1234)
     for i in xrange(10):
-        probInterarrivalTime = random.random()
-        probServiceTime1 = random.random()
-        probServiceTime2 = random.random()
+        probInterarrival = random.random()
+        probService1 = random.random()
+        probService2 = random.random()
         probBalk = random.random()
-        print Customer(id.next(), probInterarrivalTime, probServiceTime1, probServiceTime2, probBalk, 10, 20)
+        print Customer(id.next(), probInterarrival, probService1, probService2, probBalk, 10, 20)
 
 if __name__ == '__main__':
     main()
