@@ -114,7 +114,7 @@ class Customer():
 
     def calcBalk(self, probBalk):
         """Maps a probability distribution to balk decision."""
-        return probBalk <= 0.5
+        return probBalk <= 0.33
 
 
 def counter():

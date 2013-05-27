@@ -187,6 +187,10 @@ class Simulation():
         for customer in self.queue:
             q1size = self.q1sizes[customer.id]
             q2size = self.q2sizes[customer.id]
+
+            q1size = q1size if q1size > 0 else '-'
+            q2size = q2size if q2size > 0 else '-'
+
             print '%s%s%s' % (customer, str(q1size).center(field_width), str(q2size).center(field_width))
 
         print
@@ -270,7 +274,7 @@ def runTrials(numTrials=10, numCustomers=10, verbose=True):
 
 
 def main():
-    numTrials = 3
+    numTrials = 10
     numCustomersPerTrial = 10
     displayStats = True
 
