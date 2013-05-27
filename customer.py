@@ -60,10 +60,10 @@ class Customer():
         """Used to generate a columned printout of customers."""
         values = (self.id,
                   self.interarrivalTime,
-                  self.arrivalTime1,
                   self.serviceTime1,
                   self.serviceTime2,
                   'Yes' if self.balk else 'No',
+                  self.arrivalTime1,
                   self.serviceTime1Begins,
                   self.serviceTime1Ends,
                   self.serviceTime2Begins if not self.balk else '--',
@@ -82,11 +82,11 @@ class Customer():
     def calcInterarrivalTime(self, probInterarrival):
         """Maps a probability distribution to interrarrival times."""
         if probInterarrival < 0.2:
-            return 1
+            return 0
         elif probInterarrival >= 0.2 and probInterarrival <= 0.6:
-            return 2
+            return 1
         else:
-            return 3
+            return 2
 
     def calcServiceTime1(self, probService1):
         """Maps a probability distribution to serviceTime1."""

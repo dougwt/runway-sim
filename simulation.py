@@ -125,11 +125,11 @@ class Simulation():
     def display(self):
         """Displays an event log of activity."""
         headers = (('Customer', '#'),
-                   ('InterArr', 'Time'),
-                   ('Arrival', 'Time'),
+                   ('Inter', 'Arrival'),
                    ('S1', 'Time'),
                    ('S2', 'Time'),
                    ('Balk', 'Decision'),
+                   ('Arrival', 'Time'),
                    ('S1 Start', 'Time'),
                    ('S1 End', 'Time'),
                    ('S2 Start', 'Time'),
