@@ -60,7 +60,7 @@ class Simulation():
 
         # determine sizes of q1 and q2 at time of arrivals
         self.q1 = len([x for x in self.queue[:-1] if x.serviceTime1Ends > customer.arrivalTime1])
-        self.q2 = len([x for x in self.queue[:-1] if x.serviceTime2Ends > customer.arrivalTime2])
+        self.q2 = len([x for x in self.queue[:-1] if x.balk is False and x.serviceTime2Ends > customer.arrivalTime2])
 
         # store queue sizes for later display
         self.q1sizes[id] = self.q1
@@ -103,13 +103,13 @@ class Simulation():
 
         # iterate through each customer in the queue
         for customer in self.queue:
-            totalWaitingTime += customer.waitingTimeInQueue
+            totalWaitingTime += customer.totalWait
             totalIdleTime += customer.idleTime
             totalServiceTime += customer.serviceTime1
             totalIterarrivalTime += customer.interarrivalTime
             totalSystemTime += customer.timeInSystem
 
-            if customer.waitingTimeInQueue > 0:
+            if customer.totalWait > 0:
                 numCustomersWhoWait += 1
 
         # calculate the averages/etc
@@ -130,12 +130,14 @@ class Simulation():
                    ('S2', 'Time'),
                    ('Balk', 'Decision'),
                    ('Arrival', 'Time'),
+                   ('Q1', 'Wait'),
                    ('S1 Start', 'Time'),
                    ('S1 End', 'Time'),
+                   ('Q2', 'Wait'),
                    ('S2 Start', 'Time'),
                    ('S2 End', 'Time'),
-                   ('Waiting', 'Time'),
-                   ('System', 'Time'),
+                   ('Total', 'Wait'),
+                   ('Total', 'System'),
                    ('Q1', 'Size'),
                    ('Q2', 'Size'))
                    # ('S1', 'Idle'),

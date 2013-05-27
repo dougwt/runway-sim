@@ -24,15 +24,17 @@ class Customer():
         self.arrivalTime1 = clock + self.interarrivalTime
         self.serviceTime1Begins = max(self.arrivalTime1, prevServiceTime1Ends)
         self.serviceTime1Ends = self.serviceTime1Begins + self.serviceTime1
+        self.waitTime1 = self.serviceTime1Begins - self.arrivalTime1
 
         # Q2/S2
         if self.balk is False:
             self.arrivalTime2 = self.serviceTime1Ends
             self.serviceTime2Begins = max(self.arrivalTime2, prevServiceTime2Ends)
             self.serviceTime2Ends = self.serviceTime2Begins + self.serviceTime2
+            self.waitTime2 = self.serviceTime2Begins - self.arrivalTime2
 
             # serviceTimeBegins - arrivalTime1
-            self.waitingTimeInQueue = self.serviceTime1Begins - self.arrivalTime1 + self.serviceTime2Begins - self.arrivalTime2
+            self.totalWait = self.waitTime1 + self.waitTime2
 
             # serviceTimeEnds - arrivalTime1
             self.timeInSystem = self.serviceTime2Ends - self.arrivalTime1
@@ -43,9 +45,11 @@ class Customer():
             self.arrivalTime2 = self.serviceTime1Ends
             self.serviceTime2Begins = prevServiceTime2Begins
             self.serviceTime2Ends = prevServiceTime2Ends
+            self.waitTime2 = 0
 
             # serviceTimeBegins - arrivalTime1
-            self.waitingTimeInQueue = self.serviceTime1Begins - self.arrivalTime1
+            # self.q1wait =
+            self.totalWait = self.waitTime1 + self.waitTime2
 
             # serviceTimeEnds - arrivalTime1
             self.timeInSystem = self.serviceTime1Ends - self.arrivalTime1
@@ -64,11 +68,13 @@ class Customer():
                   self.serviceTime2,
                   'Yes' if self.balk else 'No',
                   self.arrivalTime1,
+                  self.waitTime1,
                   self.serviceTime1Begins,
                   self.serviceTime1Ends,
+                  self.waitTime2 if not self.balk else '-',
                   self.serviceTime2Begins if not self.balk else '--',
                   self.serviceTime2Ends if not self.balk else '--',
-                  self.waitingTimeInQueue,
+                  self.totalWait,
                   self.timeInSystem)
 
         values = [str(i).center(10) for i in values]
