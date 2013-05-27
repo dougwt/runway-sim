@@ -1,0 +1,284 @@
+
+Trial 1
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Customer   Inter       S1        S2       Balk    Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
+    #      Arrival     Time      Time    Decision    Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    1         2         2         3         No        2         0         2         4         0         4         7         0         5         -         -     
+    2         2         1         3         No        4         0         4         5         2         7         10        2         6         -         1     
+    3         1         2         1         No        5         0         5         7         3         10        11        3         6         -         1     
+    4         1         3         2        Yes        6         1         7         10        -         --        --        1         4         1         1     
+    5         1         2         2         No        7         3         10        12        0         12        14        3         7         1         -     
+    6         0         3         3         No        7         5         12        15        0         15        18        5         11        2         -     
+    7         1         3         3         No        8         7         15        18        0         18        21        7         13        3         -     
+    8         0         2         2         No        8         10        18        20        1         21        23        11        15        4         1     
+    9         2         3         2         No        10        10        20        23        0         23        25        10        15        4         -     
+    10        1         1         3         No        11        12        23        24        1         25        28        13        17        5         1     
+
+                                        Average Q1 wait time:   4.80  minutes
+                                        Average Q2 wait time:   0.78  minutes
+
+                Average total waiting time for all customers:   5.50  minutes
+                 Average waiting time for customers who wait:   6.11  minutes
+                                  Average total service time:   4.60  minutes
+                               Average time between arrivals:   1.22  minutes
+                 Average time each customer spends in system:   9.90  minutes
+                    Probability a customer has to wait in Q1:     70  %
+                    Probability a customer has to wait in Q2:     40  %
+
+Trial 2
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Customer   Inter       S1        S2       Balk    Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
+    #      Arrival     Time      Time    Decision    Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    1         2         3         3        Yes        2         0         2         5         -         --        --        0         3         -         -     
+    2         2         2         2         No        4         1         5         7         0         7         9         1         5         1         -     
+    3         0         3         2        Yes        4         3         7         10        -         --        --        3         6         2         -     
+    4         0         3         2        Yes        4         6         10        13        -         --        --        6         9         3         -     
+    5         2         2         1         No        6         7         13        15        0         15        16        7         10        3         -     
+    6         2         1         3         No        8         7         15        16        0         16        19        7         11        3         -     
+    7         2         3         3         No        10        6         16        19        0         19        22        6         12        3         -     
+    8         1         3         3         No        11        8         19        22        0         22        25        8         14        4         -     
+    9         2         3         2        Yes        13        9         22        25        -         --        --        9         12        4         -     
+    10        1         1         1        Yes        14        11        25        26        -         --        --        11        12        5         -     
+
+                                        Average Q1 wait time:   5.80  minutes
+                                        Average Q2 wait time:   0.00  minutes
+
+                Average total waiting time for all customers:   5.80  minutes
+                 Average waiting time for customers who wait:   6.44  minutes
+                                  Average total service time:   4.60  minutes
+                               Average time between arrivals:   1.56  minutes
+                 Average time each customer spends in system:   9.40  minutes
+                    Probability a customer has to wait in Q1:     90  %
+                    Probability a customer has to wait in Q2:      0  %
+
+Trial 3
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Customer   Inter       S1        S2       Balk    Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
+    #      Arrival     Time      Time    Decision    Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    1         0         2         3         No        0         0         0         2         0         2         5         0         5         -         -     
+    2         1         2         3         No        1         1         2         4         1         5         8         2         7         1         1     
+    3         2         1         2         No        3         1         4         5         3         8         10        4         7         1         1     
+    4         2         2         3         No        5         0         5         7         3         10        13        3         8         -         2     
+    5         2         2         3         No        7         0         7         9         4         13        16        4         9         -         2     
+    6         2         3         1         No        9         0         9         12        4         16        17        4         8         -         2     
+    7         0         2         2        Yes        9         3         12        14        -         --        --        3         5         1         2     
+    8         1         3         3        Yes        10        4         14        17        -         --        --        4         7         2         -     
+    9         0         2         1        Yes        10        7         17        19        -         --        --        7         9         3         -     
+    10        1         1         2         No        11        8         19        20        0         20        22        8         11        4         -     
+
+                                        Average Q1 wait time:   2.40  minutes
+                                        Average Q2 wait time:   1.67  minutes
+
+                Average total waiting time for all customers:   3.90  minutes
+                 Average waiting time for customers who wait:   4.33  minutes
+                                  Average total service time:   4.30  minutes
+                               Average time between arrivals:   1.22  minutes
+                 Average time each customer spends in system:   7.60  minutes
+                    Probability a customer has to wait in Q1:     60  %
+                    Probability a customer has to wait in Q2:     50  %
+
+Trial 4
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Customer   Inter       S1        S2       Balk    Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
+    #      Arrival     Time      Time    Decision    Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    1         2         2         1         No        2         0         2         4         0         4         5         0         3         -         -     
+    2         2         1         2         No        4         0         4         5         0         5         7         0         3         -         -     
+    3         1         2         2         No        5         0         5         7         0         7         9         0         4         -         -     
+    4         2         3         3         No        7         0         7         10        0         10        13        0         6         -         -     
+    5         1         2         1         No        8         2         10        12        1         13        14        3         6         1         1     
+    6         0         3         3         No        8         4         12        15        0         15        18        4         10        2         -     
+    7         2         1         2         No        10        5         15        16        2         18        20        7         10        2         1     
+    8         2         3         3         No        12        4         16        19        1         20        23        5         11        2         1     
+    9         1         3         3         No        13        6         19        22        1         23        26        7         13        3         1     
+    10        2         3         3        Yes        15        7         22        25        -         --        --        7         10        3         1     
+
+                                        Average Q1 wait time:   2.80  minutes
+                                        Average Q2 wait time:   0.83  minutes
+
+                Average total waiting time for all customers:   3.30  minutes
+                 Average waiting time for customers who wait:   5.50  minutes
+                                  Average total service time:   4.60  minutes
+                               Average time between arrivals:   1.67  minutes
+                 Average time each customer spends in system:   7.60  minutes
+                    Probability a customer has to wait in Q1:     60  %
+                    Probability a customer has to wait in Q2:     40  %
+
+Trial 5
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Customer   Inter       S1        S2       Balk    Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
+    #      Arrival     Time      Time    Decision    Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    1         2         2         1         No        2         0         2         4         0         4         5         0         3         -         -     
+    2         1         3         1         No        3         1         4         7         0         7         8         1         5         1         -     
+    3         1         2         3         No        4         3         7         9         0         9         12        3         8         1         -     
+    4         1         2         3         No        5         4         9         11        1         12        15        5         10        2         1     
+    5         2         3         2        Yes        7         4         11        14        -         --        --        4         7         2         1     
+    6         0         3         3        Yes        7         7         14        17        -         --        --        7         10        3         -     
+    7         1         3         1         No        8         9         17        20        0         20        21        9         13        4         -     
+    8         2         2         2         No        10        10        20        22        0         22        24        10        14        4         -     
+    9         0         3         3         No        10        12        22        25        0         25        28        12        18        5         -     
+    10        0         1         2         No        10        15        25        26        2         28        30        17        20        6         1     
+
+                                        Average Q1 wait time:   6.50  minutes
+                                        Average Q2 wait time:   0.33  minutes
+
+                Average total waiting time for all customers:   6.80  minutes
+                 Average waiting time for customers who wait:   7.56  minutes
+                                  Average total service time:   4.50  minutes
+                               Average time between arrivals:   1.11  minutes
+                 Average time each customer spends in system:  10.80  minutes
+                    Probability a customer has to wait in Q1:     90  %
+                    Probability a customer has to wait in Q2:     20  %
+
+Trial 6
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Customer   Inter       S1        S2       Balk    Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
+    #      Arrival     Time      Time    Decision    Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    1         2         3         3         No        2         0         2         5         0         5         8         0         6         -         -     
+    2         2         2         2        Yes        4         1         5         7         -         --        --        1         3         1         1     
+    3         2         2         2        Yes        6         1         7         9         -         --        --        1         3         1         -     
+    4         2         3         3         No        8         1         9         12        0         12        15        1         7         1         -     
+    5         1         2         3        Yes        9         3         12        14        -         --        --        3         5         1         1     
+    6         2         3         3        Yes        11        3         14        17        -         --        --        3         6         2         -     
+    7         2         2         2         No        13        4         17        19        0         19        21        4         8         2         -     
+    8         2         3         3        Yes        15        4         19        22        -         --        --        4         7         2         -     
+    9         2         3         2         No        17        5         22        25        0         25        27        5         10        2         -     
+    10        1         2         3        Yes        18        7         25        27        -         --        --        7         9         3         -     
+
+                                        Average Q1 wait time:   2.90  minutes
+                                        Average Q2 wait time:   0.00  minutes
+
+                Average total waiting time for all customers:   2.90  minutes
+                 Average waiting time for customers who wait:   3.22  minutes
+                                  Average total service time:   5.10  minutes
+                               Average time between arrivals:   2.00  minutes
+                 Average time each customer spends in system:   6.40  minutes
+                    Probability a customer has to wait in Q1:     90  %
+                    Probability a customer has to wait in Q2:      0  %
+
+Trial 7
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Customer   Inter       S1        S2       Balk    Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
+    #      Arrival     Time      Time    Decision    Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    1         1         2         3        Yes        1         0         1         3         -         --        --        0         2         -         -     
+    2         0         1         2        Yes        1         2         3         4         -         --        --        2         3         1         -     
+    3         2         2         3         No        3         1         4         6         0         6         9         1         6         1         -     
+    4         2         2         3        Yes        5         1         6         8         -         --        --        1         3         1         1     
+    5         2         3         3         No        7         1         8         11        0         11        14        1         7         1         -     
+    6         1         3         2         No        8         3         11        14        0         14        16        3         8         1         -     
+    7         1         1         3         No        9         5         14        15        1         16        19        6         10        2         1     
+    8         2         2         3         No        11        4         15        17        2         19        22        6         11        2         1     
+    9         2         3         2         No        13        4         17        20        2         22        24        6         11        3         1     
+    10        2         3         2        Yes        15        5         20        23        -         --        --        5         8         2         1     
+
+                                        Average Q1 wait time:   2.60  minutes
+                                        Average Q2 wait time:   0.56  minutes
+
+                Average total waiting time for all customers:   3.10  minutes
+                 Average waiting time for customers who wait:   3.44  minutes
+                                  Average total service time:   4.80  minutes
+                               Average time between arrivals:   1.67  minutes
+                 Average time each customer spends in system:   6.90  minutes
+                    Probability a customer has to wait in Q1:     90  %
+                    Probability a customer has to wait in Q2:     30  %
+
+Trial 8
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Customer   Inter       S1        S2       Balk    Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
+    #      Arrival     Time      Time    Decision    Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    1         2         3         2         No        2         0         2         5         0         5         7         0         5         -         -     
+    2         1         3         1         No        3         2         5         8         0         8         9         2         6         1         -     
+    3         1         2         2         No        4         4         8         10        0         10        12        4         8         2         -     
+    4         1         3         1         No        5         5         10        13        0         13        14        5         9         2         -     
+    5         1         2         2        Yes        6         7         13        15        -         --        --        7         9         3         -     
+    6         0         3         1         No        6         9         15        18        0         18        19        9         13        4         -     
+    7         2         2         2         No        8         10        18        20        0         20        22        10        14        4         -     
+    8         1         3         1         No        9         11        20        23        0         23        24        11        15        5         -     
+    9         1         2         1        Yes        10        13        23        25        -         --        --        13        15        5         -     
+    10        0         2         2        Yes        10        15        25        27        -         --        --        15        17        6         -     
+
+                                        Average Q1 wait time:   7.60  minutes
+                                        Average Q2 wait time:   0.00  minutes
+
+                Average total waiting time for all customers:   7.60  minutes
+                 Average waiting time for customers who wait:   8.44  minutes
+                                  Average total service time:   4.00  minutes
+                               Average time between arrivals:   1.11  minutes
+                 Average time each customer spends in system:  11.10  minutes
+                    Probability a customer has to wait in Q1:     90  %
+                    Probability a customer has to wait in Q2:      0  %
+
+Trial 9
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Customer   Inter       S1        S2       Balk    Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
+    #      Arrival     Time      Time    Decision    Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    1         2         1         2        Yes        2         0         2         3         -         --        --        0         1         -         -     
+    2         1         3         3         No        3         0         3         6         0         6         9         0         6         -         -     
+    3         2         2         1        Yes        5         1         6         8         -         --        --        1         3         1         1     
+    4         2         2         1         No        7         1         8         10        0         10        11        1         4         1         -     
+    5         0         3         1         No        7         3         10        13        0         13        14        3         7         2         -     
+    6         2         2         1        Yes        9         4         13        15        -         --        --        4         6         2         -     
+    7         1         2         2        Yes        10        5         15        17        -         --        --        5         7         2         -     
+    8         1         1         1         No        11        6         17        18        0         18        19        6         8         3         -     
+    9         0         1         3         No        11        7         18        19        0         19        22        7         11        4         -     
+    10        1         2         2        Yes        12        7         19        21        -         --        --        7         9         5         1     
+
+                                        Average Q1 wait time:   3.40  minutes
+                                        Average Q2 wait time:   0.00  minutes
+
+                Average total waiting time for all customers:   3.40  minutes
+                 Average waiting time for customers who wait:   4.25  minutes
+                                  Average total service time:   3.60  minutes
+                               Average time between arrivals:   1.33  minutes
+                 Average time each customer spends in system:   6.20  minutes
+                    Probability a customer has to wait in Q1:     80  %
+                    Probability a customer has to wait in Q2:      0  %
+
+Trial 10
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Customer   Inter       S1        S2       Balk    Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
+    #      Arrival     Time      Time    Decision    Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    1         1         3         3         No        1         0         1         4         0         4         7         0         6         -         -     
+    2         1         2         2         No        2         2         4         6         1         7         9         3         7         1         1     
+    3         0         2         3         No        2         4         6         8         1         9         12        5         10        2         1     
+    4         0         3         2         No        2         6         8         11        1         12        14        7         12        3         1     
+    5         0         2         2         No        2         9         11        13        1         14        16        10        14        4         1     
+    6         2         1         2        Yes        4         9         13        14        -         --        --        9         10        4         1     
+    7         1         2         1        Yes        5         9         14        16        -         --        --        9         11        5         -     
+    8         1         1         2         No        6         10        16        17        0         17        19        10        13        5         -     
+    9         2         2         3         No        8         9         17        19        0         19        22        9         14        5         -     
+    10        0         2         2        Yes        8         11        19        21        -         --        --        11        13        6         1     
+
+                                        Average Q1 wait time:   6.90  minutes
+                                        Average Q2 wait time:   0.44  minutes
+
+                Average total waiting time for all customers:   7.30  minutes
+                 Average waiting time for customers who wait:   8.11  minutes
+                                  Average total service time:   4.20  minutes
+                               Average time between arrivals:   0.89  minutes
+                 Average time each customer spends in system:  11.00  minutes
+                    Probability a customer has to wait in Q1:     90  %
+                    Probability a customer has to wait in Q2:     40  %
+
+-------------------------------------------------------------------------------
+Averages for 10 Completed Trials (10 Customers per Trial):
+-------------------------------------------------------------------------------
+                                        Average Q1 wait time:   4.57  minutes
+                                        Average Q2 wait time:   4.61  minutes
+
+                Average total waiting time for all customers:   0.50  minutes
+                 Average waiting time for customers who wait:   5.74  minutes
+                                  Average total service time:   4.43  minutes
+                               Average time between arrivals:   1.38  minutes
+                 Average time each customer spends in system:   8.69  minutes
+                    Probability a customer has to wait in Q1:     81  %
+                    Probability a customer has to wait in Q2:     22  %
