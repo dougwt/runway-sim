@@ -1,3 +1,16 @@
+#! /usr/bin/python
+# customer.py
+#
+# Description
+#
+# CSS 458 - Group Project - Spring 2013
+# Doug Tyler <dougwt@gmail.com>
+# Elliott Shanks <shanksfamily3012@gmail.com>
+# Hien Phu Luong <phuhien@uw.edu>
+#
+# Assumptions:
+# TODO: Assumptions
+
 class Customer():
     def __init__(self, id, probInterarrival, probService1, probService2, probBalk, prevCust, clock):
         """Initializes customer data based on initial data."""

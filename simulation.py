@@ -1,3 +1,16 @@
+#! /usr/bin/python
+# simulation.py
+#
+# Description
+#
+# CSS 458 - Group Project - Spring 2013
+# Doug Tyler <dougwt@gmail.com>
+# Elliott Shanks <shanksfamily3012@gmail.com>
+# Hien Phu Luong <phuhien@uw.edu>
+#
+# Assumptions:
+# TODO: Assumptions
+
 from __future__ import division
 import random
 from customer import Customer
@@ -317,20 +330,40 @@ def runTrials(numTrials=10, numCustomers=10, verbose=True):
 
     print
     print '-'*79
-    print "Averages for %d Completed Trials (%d Customers per Trial):" % (numTrials, numCustomers)
+    print "Averages for %d Completed Trials (%d Customers per Trial):" % (
+        numTrials, numCustomers)
     print '-'*79
     # print "%60s:  %5.2f  minutes" % ("Average Q1 wait time", averageQ1Time)
     # print "%60s:  %5.2f  minutes" % ("Average Q2 wait time", averageQ2Time)
     # print
-    print "%60s:  %5.2f  minutes     [ Q1:%5.2f minutes   Q2:%5.2f minutes ]" % ("Average waiting time for all customers", averageWaitingTime, averageQ1Time, averageQ2Time)
-    print "%60s:  %5.2f  minutes     [ Q1:%5.2f minutes   Q2:%5.2f minutes ]" % ("Average waiting time for customers who wait", averageWaitTimeWhoWait, averageQ1TimeWait, averageQ2TimeWait)
-    print "%60s:  %5.2f  minutes     [ Q1:%5.2f minutes   Q2:%5.2f minutes ]" % ("Average service time", averageServiceTime, averageService1Time, averageService2Time)
-    print "%60s:  %5d  %%           [ Q1: %4d %%         Q2: %4d %%       ]" % ("Probability a customer has to wait", waitProbability * 100, wait1Probability * 100, wait2Probability * 100)
-    print "%60s:  %5.2f  minutes" % ("Average time between arrivals", averageInterarrrivalTime)
-    print "%60s:  %5.2f  minutes" % ("Average time each customer spends in system", averageSystemTime)
-    # print "%60s:  %5d  %%" % ("Probability a customer has to wait in Q1", wait1Probability * 100)
-    # print "%60s:  %5d  %%" % ("Probability a customer has to wait in Q2", wait2Probability * 100)
-    # print "%60s:  %5d  %%" % ("Percentage of time server is idle", idleProbability * 100)
+    h = "%60s:  %5.2f  minutes     [ Q1:%5.2f minutes   Q2:%5.2f minutes ]"
+    print h % ("Average waiting time for all customers",
+               averageWaitingTime,
+               averageQ1Time,
+               averageQ2Time)
+    print h % ("Average waiting time for customers who wait",
+               averageWaitTimeWhoWait,
+               averageQ1TimeWait,
+               averageQ2TimeWait)
+    print h % ("Average service time",
+               averageServiceTime,
+               averageService1Time,
+               averageService2Time)
+
+    h = "%60s:  %5d  %%           [ Q1: %4d %%         Q2: %4d %%       ]"
+    print h % ("Probability a customer has to wait",
+               waitProbability * 100,
+               wait1Probability * 100,
+               wait2Probability * 100)
+
+    h = "%60s:  %5.2f  minutes"
+    print h % ("Average time between arrivals", averageInterarrrivalTime)
+    print h % ("Average time each customer spends in system", averageSystemTime)
+
+    # h = "%60s:  %5d  %%"
+    # print h % ("Probability a customer has to wait in Q1", wait1Probability * 100)
+    # print h % ("Probability a customer has to wait in Q2", wait2Probability * 100)
+    # print h % ("Percentage of time server is idle", idleProbability * 100)
 
 
 def main():
@@ -340,10 +373,6 @@ def main():
 
     # run multiple trials and display averages
     runTrials(numTrials, numCustomersPerTrial, displayStats)
-
-    # numCustomers = 10
-    # sim = Simulation(numCustomers)
-    # sim.display()
 
 if __name__ == '__main__':
     main()
