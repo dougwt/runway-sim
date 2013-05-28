@@ -157,8 +157,7 @@ class Simulation():
 
         self.averageWaitingTime = totalWaitingTime / self.numCustomers
         if numCustomersWhoWait > 0:
-            self.averageWaitTimeWhoWait = totalWaitingTime /
-                                          numCustomersWhoWait
+            self.averageWaitTimeWhoWait = totalWaitingTime / numCustomersWhoWait
         if numCustomersQ1 > 0:
             self.averageQ1TimeWait = totalQ1WaitTime / numCustomersQ1
             self.averageService1Time = totalService1Time / self.numCustomers
@@ -166,8 +165,7 @@ class Simulation():
             self.averageQ2TimeWait = totalQ2WaitTime / numCustomersQ2
             self.averageService2Time = totalService2Time / self.numCustomers
         self.averageServiceTime = totalServiceTime / self.numCustomers
-        self.averageInterarrrivalTime = totalIterarrivalTime /
-                                        (self.numCustomers - 1)
+        self.averageInterarrrivalTime = totalIterarrivalTime / (self.numCustomers - 1)
         self.averageSystemTime = totalSystemTime / self.numCustomers
         self.waitProbability = numCustomersWhoWait / self.numCustomers
         self.wait1Probability = numCustomersQ1 / self.numCustomers
