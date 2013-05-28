@@ -67,12 +67,6 @@ class Customer():
     def __str__(self):
         """Used to generate a columned printout of customers."""
         values = (self.id,
-                  # '%.2f' % self.probInterarrival,
-                  # '%.2f' % self.probService1,
-                  # '%.2f' % self.probService2,
-                  # self.interarrivalTime,
-                  # self.serviceTime1,
-                  # self.serviceTime2,
                   ('%.2f -> %d' % (self.probInterarrival, self.interarrivalTime))[1:],
                   ('%.2f -> %d' % (self.probService1, self.serviceTime1))[1:],
                   ('%.2f -> %d' % (self.probService2, self.serviceTime2))[1:],

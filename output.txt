@@ -4,237 +4,237 @@ Trial 1
  Customer   Inter       S1        S2               Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
     #      Arrival     Time      Time     Balk?      Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    1         1         1         2        Yes        1         0         1         2         -         --        --        0         1         -         -     
-    2         2         3         2        Yes        3         0         3         6         -         --        --        0         3         -         -     
-    3         2         2         3         -         5         1         6         8         0         8         11        1         6         1         -     
-    4         1         3         2         -         6         2         8         11        0         11        13        2         7         1         -     
-    5         2         1         2        Yes        8         3         11        12        -         --        --        3         4         1         1     
-    6         2         3         2         -         10        2         12        15        0         15        17        2         7         2         -     
-    7         2         1         1         -         12        3         15        16        1         17        18        4         6         1         1     
-    8         0         1         1         -         12        4         16        17        1         18        19        5         7         2         1     
-    9         1         3         1         -         13        4         17        20        0         20        21        4         8         3         -     
-    10        2         1         3        Yes        15        5         20        21        -         --        --        5         6         3         -     
+    1      .43 -> 1  .66 -> 3  .87 -> 3  .25 -> Y     1         0         1         4         -         --        --        0         3         -         -     
+    2      .16 -> 0  .18 -> 1  .33 -> 2  .66 -> -     1         3         4         5         0         5         7         3         6         1         -     
+    3      .85 -> 2  .71 -> 3  .66 -> 3  .45 -> -     3         2         5         8         0         8         11        2         8         2         -     
+    4      .28 -> 1  .75 -> 3  .81 -> 3  .66 -> -     4         4         8         11        0         11        14        4         10        2         -     
+    5      .73 -> 2  .54 -> 2  .85 -> 3  .11 -> Y     6         5         11        13        -         --        --        5         7         2         1     
+    6      .22 -> 1  .19 -> 1  .30 -> 2  .77 -> -     7         6         13        14        0         14        16        6         9         3         -     
+    7      .96 -> 2  .20 -> 2  .83 -> 3  .05 -> Y     9         5         14        16        -         --        --        5         7         3         -     
+    8      .97 -> 2  .65 -> 3  .15 -> 1  .33 -> Y     11        5         16        19        -         --        --        5         8         3         -     
+    9      .40 -> 1  .12 -> 1  .61 -> 3  .07 -> Y     12        7         19        20        -         --        --        7         8         4         -     
+    10     .60 -> 1  .06 -> 1  .46 -> 2  .01 -> Y     13        7         20        21        -         --        --        7         8         4         -     
 
-                      Average waiting time for all customers:   2.60  minutes     [ Q1: 2.40 minutes   Q2: 0.25 minutes ]
-                 Average waiting time for customers who wait:   3.25  minutes     [ Q1: 3.00 minutes   Q2: 1.00 minutes ]
-                                        Average service time:   2.90  minutes     [ Q1: 1.90 minutes   Q2: 1.00 minutes ]
-                          Probability a customer has to wait:     80  %           [ Q1:   80 %         Q2:   20 %       ]
-                               Average time between arrivals:   1.67  minutes
-                 Average time each customer spends in system:   5.50  minutes
+                      Average waiting time for all customers:   4.40  minutes     [ Q1: 4.40 minutes   Q2: 0.00 minutes ]
+                 Average waiting time for customers who wait:   4.89  minutes     [ Q1: 4.89 minutes   Q2: 0.00 minutes ]
+                                        Average service time:   3.00  minutes     [ Q1: 2.00 minutes   Q2: 0.00 minutes ]
+                          Probability a customer has to wait:     90  %           [ Q1:   90 %         Q2:    0 %       ]
+                               Average time between arrivals:   1.44  minutes
+                 Average time each customer spends in system:   7.40  minutes
 
 Trial 2
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
  Customer   Inter       S1        S2               Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
     #      Arrival     Time      Time     Balk?      Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    1         2         2         2        Yes        2         0         2         4         -         --        --        0         2         -         -     
-    2         1         2         3         -         3         1         4         6         0         6         9         1         6         1         -     
-    3         0         3         2         -         3         3         6         9         0         9         11        3         8         2         -     
-    4         1         3         3         -         4         5         9         12        0         12        15        5         11        2         -     
-    5         0         2         2        Yes        4         8         12        14        -         --        --        8         10        3         1     
-    6         1         3         3         -         5         9         14        17        0         17        20        9         15        4         -     
-    7         0         2         2         -         5         12        17        19        1         20        22        13        17        5         1     
-    8         1         1         1        Yes        6         13        19        20        -         --        --        13        14        5         1     
-    9         1         3         2        Yes        7         13        20        23        -         --        --        13        16        6         -     
-    10        1         1         2         -         8         15        23        24        0         24        26        15        18        7         -     
+    1      .03 -> 0  .99 -> 3  .85 -> 3  .20 -> Y     0         0         0         3         -         --        --        0         3         -         -     
+    2      .59 -> 1  .43 -> 2  .39 -> 2  .60 -> -     1         2         3         5         0         5         7         2         6         1         -     
+    3      .26 -> 1  .90 -> 3  .09 -> 1  .76 -> -     2         3         5         8         0         8         9         3         7         2         -     
+    4      .72 -> 2  .61 -> 3  .50 -> 2  .17 -> Y     4         4         8         11        -         --        --        4         7         2         -     
+    5      .19 -> 0  .43 -> 2  .94 -> 3  .75 -> -     4         7         11        13        0         13        16        7         12        3         -     
+    6      .56 -> 1  .97 -> 3  .33 -> 2  .35 -> -     5         8         13        16        0         16        18        8         13        3         -     
+    7      .82 -> 2  .69 -> 3  .97 -> 3  .77 -> -     7         9         16        19        0         19        22        9         15        4         -     
+    8      .94 -> 2  .05 -> 1  .37 -> 2  .01 -> Y     9         10        19        20        -         --        --        10        11        4         1     
+    9      .60 -> 1  .59 -> 2  .81 -> 3  .72 -> -     10        10        20        22        0         22        25        10        15        5         -     
+    10     .55 -> 1  .25 -> 2  .17 -> 1  .71 -> -     11        11        22        24        1         25        26        12        15        5         1     
 
-                      Average waiting time for all customers:   8.00  minutes     [ Q1: 7.90 minutes   Q2: 0.11 minutes ]
-                 Average waiting time for customers who wait:   8.89  minutes     [ Q1: 8.78 minutes   Q2: 1.00 minutes ]
-                                        Average service time:   3.70  minutes     [ Q1: 2.20 minutes   Q2: 1.50 minutes ]
+                      Average waiting time for all customers:   6.50  minutes     [ Q1: 6.40 minutes   Q2: 0.11 minutes ]
+                 Average waiting time for customers who wait:   7.22  minutes     [ Q1: 7.11 minutes   Q2: 1.00 minutes ]
+                                        Average service time:   3.90  minutes     [ Q1: 2.40 minutes   Q2: 1.50 minutes ]
                           Probability a customer has to wait:     90  %           [ Q1:   90 %         Q2:   10 %       ]
-                               Average time between arrivals:   0.89  minutes
-                 Average time each customer spends in system:  11.70  minutes
+                               Average time between arrivals:   1.22  minutes
+                 Average time each customer spends in system:  10.40  minutes
 
 Trial 3
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
  Customer   Inter       S1        S2               Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
     #      Arrival     Time      Time     Balk?      Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    1         1         3         2         -         1         0         1         4         0         4         6         0         5         -         -     
-    2         2         3         3         -         3         1         4         7         0         7         10        1         7         1         -     
-    3         2         3         1        Yes        5         2         7         10        -         --        --        2         5         1         -     
-    4         0         1         2        Yes        5         5         10        11        -         --        --        5         6         2         -     
-    5         2         3         3         -         7         4         11        14        0         14        17        4         10        2         -     
-    6         0         3         2         -         7         7         14        17        0         17        19        7         12        3         -     
-    7         2         1         3         -         9         8         17        18        1         19        22        9         13        4         1     
-    8         2         3         3         -         11        7         18        21        1         22        25        8         14        3         1     
-    9         1         2         2         -         12        9         21        23        2         25        27        11        15        4         1     
-    10        1         2         3         -         13        10        23        25        2         27        30        12        17        5         1     
+    1      .88 -> 2  .44 -> 2  .30 -> 2  .79 -> -     2         0         2         4         0         4         6         0         4         -         -     
+    2      .55 -> 1  .38 -> 2  .05 -> 1  .79 -> -     3         1         4         6         0         6         7         1         4         1         -     
+    3      .04 -> 0  .97 -> 3  .12 -> 1  .49 -> -     3         3         6         9         0         9         10        3         7         2         -     
+    4      .84 -> 2  .36 -> 2  .38 -> 2  .87 -> -     5         4         9         11        0         11        13        4         8         2         -     
+    5      .17 -> 0  .11 -> 1  .97 -> 3  .48 -> -     5         6         11        12        1         13        16        7         11        3         1     
+    6      .76 -> 2  .10 -> 1  .05 -> 1  .72 -> -     7         5         12        13        3         16        17        8         10        3         1     
+    7      .07 -> 0  .85 -> 3  .36 -> 2  .06 -> Y     7         6         13        16        -         --        --        6         9         4         1     
+    8      .46 -> 1  .00 -> 1  .81 -> 3  .31 -> Y     8         8         16        17        -         --        --        8         9         5         -     
+    9      .22 -> 1  .93 -> 3  .67 -> 3  .70 -> -     9         8         17        20        0         20        23        8         14        5         -     
+    10     .22 -> 1  .24 -> 2  .24 -> 2  .57 -> -     10        10        20        22        1         23        25        11        15        6         1     
 
-                      Average waiting time for all customers:   5.90  minutes     [ Q1: 5.30 minutes   Q2: 0.67 minutes ]
-                 Average waiting time for customers who wait:   6.56  minutes     [ Q1: 5.89 minutes   Q2: 1.50 minutes ]
-                                        Average service time:   4.50  minutes     [ Q1: 2.40 minutes   Q2: 2.10 minutes ]
-                          Probability a customer has to wait:     90  %           [ Q1:   90 %         Q2:   40 %       ]
-                               Average time between arrivals:   1.44  minutes
-                 Average time each customer spends in system:  10.40  minutes
+                      Average waiting time for all customers:   5.60  minutes     [ Q1: 5.10 minutes   Q2: 0.56 minutes ]
+                 Average waiting time for customers who wait:   6.22  minutes     [ Q1: 5.67 minutes   Q2: 1.67 minutes ]
+                                        Average service time:   3.50  minutes     [ Q1: 2.00 minutes   Q2: 1.50 minutes ]
+                          Probability a customer has to wait:     90  %           [ Q1:   90 %         Q2:   30 %       ]
+                               Average time between arrivals:   1.11  minutes
+                 Average time each customer spends in system:   9.10  minutes
 
 Trial 4
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
  Customer   Inter       S1        S2               Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
     #      Arrival     Time      Time     Balk?      Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    1         0         2         2        Yes        0         0         0         2         -         --        --        0         2         -         -     
-    2         2         3         1        Yes        2         0         2         5         -         --        --        0         3         -         -     
-    3         1         2         3        Yes        3         2         5         7         -         --        --        2         4         1         -     
-    4         1         2         1         -         4         3         7         9         0         9         10        3         6         2         -     
-    5         2         2         3         -         6         3         9         11        0         11        14        3         8         2         -     
-    6         1         3         1         -         7         4         11        14        0         14        15        4         8         2         -     
-    7         1         3         2         -         8         6         14        17        0         17        19        6         11        3         -     
-    8         2         2         3        Yes        10        7         17        19        -         --        --        7         9         3         -     
-    9         2         1         2         -         12        7         19        20        0         20        22        7         10        3         -     
-    10        2         3         1         -         14        6         20        23        0         23        24        6         10        3         -     
+    1      .15 -> 0  .88 -> 3  .99 -> 3  .77 -> -     0         0         0         3         0         3         6         0         6         -         -     
+    2      .15 -> 0  .33 -> 2  .32 -> 2  .59 -> -     0         3         3         5         1         6         8         4         8         1         1     
+    3      .22 -> 1  .20 -> 2  .85 -> 3  .76 -> -     1         4         5         7         1         8         11        5         10        2         1     
+    4      .02 -> 0  .83 -> 3  .08 -> 1  .54 -> -     1         6         7         10        1         11        12        7         11        3         1     
+    5      .79 -> 2  .40 -> 2  .78 -> 3  .90 -> -     3         7         10        12        0         12        15        7         12        3         -     
+    6      .73 -> 2  .76 -> 3  .95 -> 3  .21 -> Y     5         7         12        15        -         --        --        7         10        3         -     
+    7      .24 -> 1  .45 -> 2  .17 -> 1  .23 -> Y     6         9         15        17        -         --        --        9         11        4         -     
+    8      .27 -> 1  .45 -> 2  .64 -> 3  .10 -> Y     7         10        17        19        -         --        --        10        12        4         -     
+    9      .92 -> 2  .90 -> 3  .60 -> 2  .55 -> -     9         10        19        22        0         22        24        10        15        5         -     
+    10     .27 -> 1  .04 -> 1  .55 -> 2  .83 -> -     10        12        22        23        1         24        26        13        16        5         1     
 
-                      Average waiting time for all customers:   3.80  minutes     [ Q1: 3.80 minutes   Q2: 0.00 minutes ]
-                 Average waiting time for customers who wait:   4.75  minutes     [ Q1: 4.75 minutes   Q2: 0.00 minutes ]
-                                        Average service time:   3.30  minutes     [ Q1: 2.30 minutes   Q2: 0.00 minutes ]
-                          Probability a customer has to wait:     80  %           [ Q1:   80 %         Q2:    0 %       ]
-                               Average time between arrivals:   1.56  minutes
-                 Average time each customer spends in system:   7.10  minutes
+                      Average waiting time for all customers:   7.20  minutes     [ Q1: 6.80 minutes   Q2: 0.44 minutes ]
+                 Average waiting time for customers who wait:   8.00  minutes     [ Q1: 7.56 minutes   Q2: 1.00 minutes ]
+                                        Average service time:   3.90  minutes     [ Q1: 2.30 minutes   Q2: 1.60 minutes ]
+                          Probability a customer has to wait:     90  %           [ Q1:   90 %         Q2:   40 %       ]
+                               Average time between arrivals:   1.11  minutes
+                 Average time each customer spends in system:  11.10  minutes
 
 Trial 5
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
  Customer   Inter       S1        S2               Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
     #      Arrival     Time      Time     Balk?      Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    1         1         2         2         -         1         0         1         3         0         3         5         0         4         -         -     
-    2         1         3         3         -         2         1         3         6         0         6         9         1         7         1         -     
-    3         0         2         1         -         2         4         6         8         1         9         10        5         8         2         1     
-    4         2         3         2         -         4         4         8         11        0         11        13        4         9         2         -     
-    5         2         1         1         -         6         5         11        12        1         13        14        6         8         2         1     
-    6         1         3         2         -         7         5         12        15        0         15        17        5         10        3         -     
-    7         1         2         1         -         8         7         15        17        0         17        18        7         10        3         -     
-    8         0         3         3         -         8         9         17        20        0         20        23        9         15        4         -     
-    9         1         2         2         -         9         11        20        22        1         23        25        12        16        5         1     
-    10        2         2         3        Yes        11        11        22        24        -         --        --        11        13        5         1     
+    1      .52 -> 1  .95 -> 3  .77 -> 3  .44 -> -     1         0         1         4         0         4         7         0         6         -         -     
+    2      .07 -> 0  .21 -> 2  .59 -> 2  .27 -> Y     1         3         4         6         -         --        --        3         5         1         1     
+    3      .61 -> 2  .31 -> 2  .96 -> 3  .54 -> -     3         3         6         8         0         8         11        3         8         2         -     
+    4      .96 -> 2  .98 -> 3  .50 -> 2  .91 -> -     5         3         8         11        0         11        13        3         8         2         -     
+    5      .49 -> 1  .13 -> 1  .25 -> 2  .37 -> -     6         5         11        12        1         13        15        6         9         2         1     
+    6      .77 -> 2  .49 -> 2  .64 -> 3  .59 -> -     8         4         12        14        1         15        18        5         10        2         1     
+    7      .36 -> 1  .97 -> 3  .99 -> 3  .14 -> Y     9         5         14        17        -         --        --        5         8         3         1     
+    8      .06 -> 0  .40 -> 2  .78 -> 3  .26 -> Y     9         8         17        19        -         --        --        8         10        4         -     
+    9      .03 -> 0  .14 -> 1  .89 -> 3  .38 -> -     9         10        19        20        0         20        23        10        14        5         -     
+    10     .14 -> 0  .52 -> 2  .98 -> 3  .08 -> Y     9         11        20        22        -         --        --        11        13        6         1     
 
-                      Average waiting time for all customers:   6.00  minutes     [ Q1: 5.70 minutes   Q2: 0.33 minutes ]
-                 Average waiting time for customers who wait:   6.67  minutes     [ Q1: 6.33 minutes   Q2: 1.00 minutes ]
-                                        Average service time:   4.00  minutes     [ Q1: 2.30 minutes   Q2: 1.70 minutes ]
-                          Probability a customer has to wait:     90  %           [ Q1:   90 %         Q2:   30 %       ]
-                               Average time between arrivals:   1.22  minutes
-                 Average time each customer spends in system:  10.00  minutes
+                      Average waiting time for all customers:   5.40  minutes     [ Q1: 5.20 minutes   Q2: 0.22 minutes ]
+                 Average waiting time for customers who wait:   6.00  minutes     [ Q1: 5.78 minutes   Q2: 1.00 minutes ]
+                                        Average service time:   3.70  minutes     [ Q1: 2.10 minutes   Q2: 1.60 minutes ]
+                          Probability a customer has to wait:     90  %           [ Q1:   90 %         Q2:   20 %       ]
+                               Average time between arrivals:   1.00  minutes
+                 Average time each customer spends in system:   9.10  minutes
 
 Trial 6
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
  Customer   Inter       S1        S2               Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
     #      Arrival     Time      Time     Balk?      Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    1         0         2         2         -         0         0         0         2         0         2         4         0         4         -         -     
-    2         1         2         3         -         1         1         2         4         0         4         7         1         6         1         -     
-    3         2         3         3        Yes        3         1         4         7         -         --        --        1         4         1         -     
-    4         2         3         3        Yes        5         2         7         10        -         --        --        2         5         1         -     
-    5         1         3         1         -         6         4         10        13        0         13        14        4         8         2         -     
-    6         2         3         1         -         8         5         13        16        0         16        17        5         9         2         -     
-    7         1         2         3         -         9         7         16        18        0         18        21        7         12        3         -     
-    8         2         2         2        Yes        11        7         18        20        -         --        --        7         9         3         1     
-    9         2         1         2         -         13        7         20        21        0         21        23        7         10        3         -     
-    10        0         2         2         -         13        8         21        23        0         23        25        8         12        4         -     
+    1      .58 -> 1  .68 -> 3  .07 -> 1  .34 -> -     1         0         1         4         0         4         5         0         4         -         -     
+    2      .05 -> 0  .30 -> 2  .25 -> 2  .38 -> -     1         3         4         6         0         6         8         3         7         1         -     
+    3      .99 -> 2  .65 -> 3  .60 -> 2  .64 -> -     3         3         6         9         0         9         11        3         8         2         -     
+    4      .59 -> 1  .43 -> 2  .60 -> 2  .01 -> Y     4         5         9         11        -         --        --        5         7         2         -     
+    5      .90 -> 2  .95 -> 3  .40 -> 2  .04 -> Y     6         5         11        14        -         --        --        5         8         2         -     
+    6      .30 -> 1  .41 -> 2  .40 -> 2  .35 -> -     7         7         14        16        0         16        18        7         11        3         -     
+    7      .96 -> 2  .94 -> 3  .12 -> 1  .59 -> -     9         7         16        19        0         19        20        7         11        3         -     
+    8      .89 -> 2  .56 -> 2  .50 -> 2  .02 -> Y     11        8         19        21        -         --        --        8         10        3         -     
+    9      .83 -> 2  .46 -> 2  .45 -> 2  .46 -> -     13        8         21        23        0         23        25        8         12        4         -     
+    10     .13 -> 0  .90 -> 3  .93 -> 3  .81 -> -     13        10        23        26        0         26        29        10        16        5         -     
 
-                      Average waiting time for all customers:   4.20  minutes     [ Q1: 4.20 minutes   Q2: 0.00 minutes ]
-                 Average waiting time for customers who wait:   4.67  minutes     [ Q1: 4.67 minutes   Q2: 0.00 minutes ]
-                                        Average service time:   3.70  minutes     [ Q1: 2.30 minutes   Q2: 0.00 minutes ]
+                      Average waiting time for all customers:   5.60  minutes     [ Q1: 5.60 minutes   Q2: 0.00 minutes ]
+                 Average waiting time for customers who wait:   6.22  minutes     [ Q1: 6.22 minutes   Q2: 0.00 minutes ]
+                                        Average service time:   3.80  minutes     [ Q1: 2.50 minutes   Q2: 0.00 minutes ]
                           Probability a customer has to wait:     90  %           [ Q1:   90 %         Q2:    0 %       ]
                                Average time between arrivals:   1.44  minutes
-                 Average time each customer spends in system:   7.90  minutes
+                 Average time each customer spends in system:   9.40  minutes
 
 Trial 7
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
  Customer   Inter       S1        S2               Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
     #      Arrival     Time      Time     Balk?      Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    1         1         1         2        Yes        1         0         1         2         -         --        --        0         1         -         -     
-    2         2         3         3         -         3         0         3         6         0         6         9         0         6         -         -     
-    3         1         3         3        Yes        4         2         6         9         -         --        --        2         5         1         -     
-    4         1         3         2         -         5         4         9         12        0         12        14        4         9         2         -     
-    5         1         2         2         -         6         6         12        14        0         14        16        6         10        2         -     
-    6         0         3         2         -         6         8         14        17        0         17        19        8         13        3         -     
-    7         1         1         2         -         7         10        17        18        1         19        21        11        14        4         1     
-    8         2         1         2        Yes        9         9         18        19        -         --        --        9         10        4         1     
-    9         2         3         2         -         11        8         19        22        0         22        24        8         13        5         -     
-    10        1         2         3        Yes        12        10        22        24        -         --        --        10        12        5         -     
+    1      .52 -> 1  .89 -> 3  .22 -> 2  .88 -> -     1         0         1         4         0         4         6         0         5         -         -     
+    2      .33 -> 1  .33 -> 2  .29 -> 2  .11 -> Y     2         2         4         6         -         --        --        2         4         1         -     
+    3      .88 -> 2  .43 -> 2  .53 -> 2  .35 -> -     4         2         6         8         0         8         10        2         6         1         -     
+    4      .70 -> 2  .29 -> 2  .46 -> 2  .91 -> -     6         2         8         10        0         10        12        2         6         1         -     
+    5      .60 -> 2  .95 -> 3  .72 -> 3  .30 -> Y     8         2         10        13        -         --        --        2         5         1         -     
+    6      .20 -> 0  .36 -> 2  .98 -> 3  .31 -> Y     8         5         13        15        -         --        --        5         7         2         -     
+    7      .23 -> 1  .85 -> 3  .74 -> 3  .75 -> -     9         6         15        18        0         18        21        6         12        3         -     
+    8      .82 -> 2  .68 -> 3  .21 -> 2  .86 -> -     11        7         18        21        0         21        23        7         12        3         -     
+    9      .01 -> 0  .00 -> 1  .73 -> 3  .94 -> -     11        10        21        22        1         23        26        11        15        4         1     
+    10     .37 -> 1  .24 -> 2  .52 -> 2  .05 -> Y     12        10        22        24        -         --        --        10        12        5         1     
 
-                      Average waiting time for all customers:   5.80  minutes     [ Q1: 5.70 minutes   Q2: 0.12 minutes ]
-                 Average waiting time for customers who wait:   7.25  minutes     [ Q1: 7.12 minutes   Q2: 1.00 minutes ]
-                                        Average service time:   3.50  minutes     [ Q1: 2.20 minutes   Q2: 1.30 minutes ]
-                          Probability a customer has to wait:     80  %           [ Q1:   80 %         Q2:   10 %       ]
+                      Average waiting time for all customers:   4.70  minutes     [ Q1: 4.60 minutes   Q2: 0.11 minutes ]
+                 Average waiting time for customers who wait:   5.22  minutes     [ Q1: 5.11 minutes   Q2: 1.00 minutes ]
+                                        Average service time:   3.70  minutes     [ Q1: 2.30 minutes   Q2: 1.40 minutes ]
+                          Probability a customer has to wait:     90  %           [ Q1:   90 %         Q2:   10 %       ]
                                Average time between arrivals:   1.33  minutes
-                 Average time each customer spends in system:   9.30  minutes
+                 Average time each customer spends in system:   8.40  minutes
 
 Trial 8
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
  Customer   Inter       S1        S2               Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
     #      Arrival     Time      Time     Balk?      Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    1         2         3         3         -         2         0         2         5         0         5         8         0         6         -         -     
-    2         1         1         2        Yes        3         2         5         6         -         --        --        2         3         1         1     
-    3         2         1         2        Yes        5         1         6         7         -         --        --        1         2         1         1     
-    4         1         1         3         -         6         1         7         8         0         8         11        1         5         1         -     
-    5         2         3         3        Yes        8         0         8         11        -         --        --        0         3         -         -     
-    6         0         2         1         -         8         3         11        13        0         13        14        3         6         1         -     
-    7         1         1         1        Yes        9         4         13        14        -         --        --        4         5         2         -     
-    8         2         3         3         -         11        3         14        17        0         17        20        3         9         2         -     
-    9         2         3         2         -         13        4         17        20        0         20        22        4         9         2         -     
-    10        1         2         2         -         14        6         20        22        0         22        24        6         10        2         -     
+    1      .48 -> 1  .72 -> 3  .20 -> 1  .19 -> Y     1         0         1         4         -         --        --        0         3         -         -     
+    2      .00 -> 0  .76 -> 3  .16 -> 1  .87 -> -     1         3         4         7         0         7         8         3         7         1         -     
+    3      .40 -> 1  .52 -> 2  .00 -> 1  .12 -> Y     2         5         7         9         -         --        --        5         7         2         -     
+    4      .22 -> 1  .30 -> 2  .44 -> 2  .23 -> Y     3         6         9         11        -         --        --        6         8         3         -     
+    5      .88 -> 2  .95 -> 3  .64 -> 3  .18 -> Y     5         6         11        14        -         --        --        6         9         3         -     
+    6      .01 -> 0  .44 -> 2  .43 -> 2  .69 -> -     5         9         14        16        0         16        18        9         13        4         -     
+    7      .89 -> 2  .66 -> 3  .53 -> 2  .99 -> -     7         9         16        19        0         19        21        9         14        4         -     
+    8      .73 -> 2  .33 -> 2  .77 -> 3  .80 -> -     9         10        19        21        0         21        24        10        15        4         -     
+    9      .78 -> 2  .18 -> 1  .65 -> 3  .20 -> Y     11        10        21        22        -         --        --        10        11        4         1     
+    10     .70 -> 2  .22 -> 2  .91 -> 3  .49 -> -     13        9         22        24        0         24        27        9         14        5         -     
 
-                      Average waiting time for all customers:   2.40  minutes     [ Q1: 2.40 minutes   Q2: 0.00 minutes ]
-                 Average waiting time for customers who wait:   3.00  minutes     [ Q1: 3.00 minutes   Q2: 0.00 minutes ]
-                                        Average service time:   3.40  minutes     [ Q1: 2.00 minutes   Q2: 0.00 minutes ]
-                          Probability a customer has to wait:     80  %           [ Q1:   80 %         Q2:    0 %       ]
-                               Average time between arrivals:   1.56  minutes
-                 Average time each customer spends in system:   5.80  minutes
+                      Average waiting time for all customers:   6.70  minutes     [ Q1: 6.70 minutes   Q2: 0.00 minutes ]
+                 Average waiting time for customers who wait:   7.44  minutes     [ Q1: 7.44 minutes   Q2: 0.00 minutes ]
+                                        Average service time:   3.40  minutes     [ Q1: 2.30 minutes   Q2: 0.00 minutes ]
+                          Probability a customer has to wait:     90  %           [ Q1:   90 %         Q2:    0 %       ]
+                               Average time between arrivals:   1.44  minutes
+                 Average time each customer spends in system:  10.10  minutes
 
 Trial 9
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
  Customer   Inter       S1        S2               Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
     #      Arrival     Time      Time     Balk?      Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    1         1         2         1         -         1         0         1         3         0         3         4         0         3         -         -     
-    2         1         3         3        Yes        2         1         3         6         -         --        --        1         4         1         -     
-    3         1         3         1         -         3         3         6         9         0         9         10        3         7         1         -     
-    4         1         3         1         -         4         5         9         12        0         12        13        5         9         2         -     
-    5         0         2         2         -         4         8         12        14        0         14        16        8         12        3         -     
-    6         1         3         2         -         5         9         14        17        0         17        19        9         14        4         -     
-    7         2         2         2         -         7         10        17        19        0         19        21        10        14        4         -     
-    8         1         2         1         -         8         11        19        21        0         21        22        11        14        5         -     
-    9         0         2         3        Yes        8         13        21        23        -         --        --        13        15        6         -     
-    10        2         1         3         -         10        13        23        24        0         24        27        13        17        6         -     
+    1      .92 -> 2  .96 -> 3  .22 -> 2  .70 -> -     2         0         2         5         0         5         7         0         5         -         -     
+    2      .54 -> 1  .98 -> 3  .64 -> 3  .27 -> Y     3         2         5         8         -         --        --        2         5         1         -     
+    3      .49 -> 1  .80 -> 3  .01 -> 1  .77 -> -     4         4         8         11        0         11        12        4         8         2         -     
+    4      .49 -> 1  .60 -> 3  .19 -> 1  .60 -> -     5         6         11        14        0         14        15        6         10        2         -     
+    5      .71 -> 2  .07 -> 1  .50 -> 2  .68 -> -     7         7         14        15        0         15        17        7         10        3         -     
+    6      .13 -> 0  .95 -> 3  .16 -> 1  .88 -> -     7         8         15        18        0         18        19        8         12        4         -     
+    7      .52 -> 1  .03 -> 1  .06 -> 1  .70 -> -     8         10        18        19        0         19        20        10        12        4         -     
+    8      .20 -> 0  .16 -> 1  .89 -> 3  .39 -> -     8         11        19        20        0         20        23        11        15        5         -     
+    9      .12 -> 0  .79 -> 3  .30 -> 2  .04 -> Y     8         12        20        23        -         --        --        12        15        6         -     
+    10     .04 -> 0  .36 -> 2  .42 -> 2  .64 -> -     8         15        23        25        0         25        27        15        19        7         -     
 
-                      Average waiting time for all customers:   7.30  minutes     [ Q1: 7.30 minutes   Q2: 0.00 minutes ]
-                 Average waiting time for customers who wait:   8.11  minutes     [ Q1: 8.11 minutes   Q2: 0.00 minutes ]
+                      Average waiting time for all customers:   7.50  minutes     [ Q1: 7.50 minutes   Q2: 0.00 minutes ]
+                 Average waiting time for customers who wait:   8.33  minutes     [ Q1: 8.33 minutes   Q2: 0.00 minutes ]
                                         Average service time:   3.60  minutes     [ Q1: 2.30 minutes   Q2: 0.00 minutes ]
                           Probability a customer has to wait:     90  %           [ Q1:   90 %         Q2:    0 %       ]
-                               Average time between arrivals:   1.11  minutes
-                 Average time each customer spends in system:  10.90  minutes
+                               Average time between arrivals:   0.89  minutes
+                 Average time each customer spends in system:  11.10  minutes
 
 Trial 10
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
  Customer   Inter       S1        S2               Arrival      Q1     S1 Start   S1 End      Q2     S2 Start   S2 End    Total     Total       Q1        Q2    
     #      Arrival     Time      Time     Balk?      Time      Wait      Time      Time      Wait      Time      Time      Wait     System     Size      Size   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    1         1         3         3        Yes        1         0         1         4         -         --        --        0         3         -         -     
-    2         2         2         2         -         3         1         4         6         0         6         8         1         5         1         -     
-    3         0         3         3         -         3         3         6         9         0         9         12        3         9         2         -     
-    4         1         2         1         -         4         5         9         11        1         12        13        6         9         2         1     
-    5         2         2         1        Yes        6         5         11        13        -         --        --        5         7         2         -     
-    6         2         1         2         -         8         5         13        14        0         14        16        5         8         3         -     
-    7         2         2         2         -         10        4         14        16        0         16        18        4         8         3         -     
-    8         0         2         1        Yes        10        6         16        18        -         --        --        6         8         4         -     
-    9         2         1         2         -         12        6         18        19        0         19        21        6         9         4         -     
-    10        2         2         3         -         14        5         19        21        0         21        24        5         10        3         -     
+    1      .55 -> 1  .67 -> 3  .27 -> 2  .93 -> -     1         0         1         4         0         4         6         0         5         -         -     
+    2      .34 -> 1  .12 -> 1  .95 -> 3  .27 -> Y     2         2         4         5         -         --        --        2         3         1         1     
+    3      .40 -> 1  .50 -> 2  .86 -> 3  .17 -> Y     3         2         5         7         -         --        --        2         4         2         -     
+    4      .53 -> 1  .23 -> 2  .00 -> 1  .89 -> -     4         3         7         9         0         9         10        3         6         2         -     
+    5      .97 -> 2  .41 -> 2  .19 -> 1  .76 -> -     6         3         9         11        0         11        12        3         6         2         -     
+    6      .31 -> 1  .59 -> 2  .20 -> 2  .11 -> Y     7         4         11        13        -         --        --        4         6         2         -     
+    7      .66 -> 2  .66 -> 3  .80 -> 3  .64 -> -     9         4         13        16        0         16        19        4         10        2         -     
+    8      .05 -> 0  .42 -> 2  .89 -> 3  .57 -> -     9         7         16        18        1         19        22        8         13        3         1     
+    9      .56 -> 1  .34 -> 2  .88 -> 3  .69 -> -     10        8         18        20        2         22        25        10        15        4         1     
+    10     .56 -> 1  .35 -> 2  .75 -> 3  .61 -> -     11        9         20        22        3         25        28        12        17        4         1     
 
-                      Average waiting time for all customers:   4.10  minutes     [ Q1: 4.00 minutes   Q2: 0.11 minutes ]
-                 Average waiting time for customers who wait:   4.56  minutes     [ Q1: 4.44 minutes   Q2: 1.00 minutes ]
-                                        Average service time:   3.50  minutes     [ Q1: 2.00 minutes   Q2: 1.50 minutes ]
-                          Probability a customer has to wait:     90  %           [ Q1:   90 %         Q2:   10 %       ]
-                               Average time between arrivals:   1.56  minutes
-                 Average time each customer spends in system:   7.60  minutes
+                      Average waiting time for all customers:   4.80  minutes     [ Q1: 4.20 minutes   Q2: 0.67 minutes ]
+                 Average waiting time for customers who wait:   5.33  minutes     [ Q1: 4.67 minutes   Q2: 2.00 minutes ]
+                                        Average service time:   3.70  minutes     [ Q1: 2.10 minutes   Q2: 1.60 minutes ]
+                          Probability a customer has to wait:     90  %           [ Q1:   90 %         Q2:   30 %       ]
+                               Average time between arrivals:   1.22  minutes
+                 Average time each customer spends in system:   8.50  minutes
 
 -------------------------------------------------------------------------------
 Averages for 10 Completed Trials (10 Customers per Trial):
 -------------------------------------------------------------------------------
-                      Average waiting time for all customers:   0.50  minutes     [ Q1: 4.87 minutes   Q2: 1.60 minutes ]
-                 Average waiting time for customers who wait:   5.77  minutes     [ Q1: 5.61 minutes   Q2: 0.65 minutes ]
-                                        Average service time:   3.61  minutes     [ Q1: 2.19 minutes   Q2: 0.91 minutes ]
-                          Probability a customer has to wait:     86  %           [ Q1:   86 %         Q2:   12 %       ]
-                               Average time between arrivals:   1.38  minutes
-                 Average time each customer spends in system:   8.62  minutes
+                      Average waiting time for all customers:   0.58  minutes     [ Q1: 5.65 minutes   Q2: 2.11 minutes ]
+                 Average waiting time for customers who wait:   6.49  minutes     [ Q1: 6.28 minutes   Q2: 0.77 minutes ]
+                                        Average service time:   3.62  minutes     [ Q1: 2.23 minutes   Q2: 0.92 minutes ]
+                          Probability a customer has to wait:     90  %           [ Q1:   90 %         Q2:   14 %       ]
+                               Average time between arrivals:   1.22  minutes
+                 Average time each customer spends in system:   9.46  minutes
