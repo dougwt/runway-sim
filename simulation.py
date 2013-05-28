@@ -19,14 +19,18 @@ class Simulation():
 
         # additional values to be calculated during simulation
         self.averageWaitingTime = 0         # average waiting time for all customers
+        self.averageQ1Time = 0
+        self.averageQ2Time = 0
         self.averageWaitingTimeWhoWait = 0  # avg waiting time for customers who wait
+        self.averageQ1TimeWait = 0
+        self.averageQ2TimeWait = 0
         self.averageServiceTime = 0         # average service time for all customers
+        self.averageService1Time = 0
+        self.averageService2Time = 0
         self.averageInterarrrivalTime = 0   # average interarrival time for all customers
         self.averageSystemTime = 0          # average total system time for all customers
         self.waitProbability = 0            # probability a customer has to wait
         self.idleProbability = 0            # percentage of time server is idle
-        self.averageQ1Time = 0
-        self.averageQ2Time = 0
         self.q1sizes = {}
         self.q2sizes = {}
 
@@ -97,6 +101,8 @@ class Simulation():
         # temporary variables used for calculating averages/etc
         totalWaitingTime = 0
         totalServiceTime = 0
+        totalService1Time = 0
+        totalService2Time = 0
         totalSystemTime = 0
         totalIdleTime = 0
         totalIterarrivalTime = 0
@@ -112,7 +118,12 @@ class Simulation():
         for customer in self.queue:
             totalWaitingTime += customer.totalWait
             # totalIdleTime += customer.idleTime
-            totalServiceTime += customer.serviceTime1 + customer.serviceTime2
+            totalService1Time += customer.serviceTime1
+            if customer.balk is False:
+                totalService2Time += customer.serviceTime2
+                totalServiceTime += customer.serviceTime1 + customer.serviceTime2
+            else:
+                totalServiceTime += customer.serviceTime1
             totalIterarrivalTime += customer.interarrivalTime
             totalSystemTime += customer.timeInSystem
 
@@ -135,6 +146,12 @@ class Simulation():
         self.averageWaitingTime = totalWaitingTime / float(self.numCustomers)
         if numCustomersWhoWait > 0:
             self.averageWaitingTimeWhoWait = totalWaitingTime / float(numCustomersWhoWait)
+        if numCustomersQ1 > 0:
+            self.averageQ1TimeWait = totalQ1WaitTime / float(numCustomersQ1)
+            self.averageService1Time = totalService1Time / float(self.numCustomers)
+        if numCustomersQ2 > 0:
+            self.averageQ2TimeWait = totalQ2WaitTime / float(numCustomersQ2)
+            self.averageService2Time = totalService2Time / float(self.numCustomers)
         self.averageServiceTime = totalServiceTime / float(self.numCustomers)
         self.averageInterarrrivalTime = totalIterarrivalTime / float(self.numCustomers - 1)
         self.averageSystemTime = totalSystemTime / float(self.numCustomers)
@@ -149,7 +166,7 @@ class Simulation():
                    ('Inter', 'Arrival'),
                    ('S1', 'Time'),
                    ('S2', 'Time'),
-                   ('Balk', 'Decision'),
+                   ('', 'Balk?'),
                    ('Arrival', 'Time'),
                    ('Q1', 'Wait'),
                    ('S1 Start', 'Time'),
@@ -194,16 +211,16 @@ class Simulation():
             print '%s%s%s' % (customer, str(q1size).center(field_width), str(q2size).center(field_width))
 
         print
-        print "%60s:  %5.2f  minutes" % ("Average Q1 wait time", self.averageQ1Time)
-        print "%60s:  %5.2f  minutes" % ("Average Q2 wait time", self.averageQ2Time)
-        print
-        print "%60s:  %5.2f  minutes" % ("Average total waiting time for all customers", self.averageWaitingTime)
-        print "%60s:  %5.2f  minutes" % ("Average waiting time for customers who wait", self.averageWaitingTimeWhoWait)
-        print "%60s:  %5.2f  minutes" % ("Average total service time", self.averageServiceTime)
+        # print "%60s:  %5.2f  minutes" % ("Average Q1 wait time", self.averageQ1Time)
+        # print "%60s:  %5.2f  minutes" % ("Average Q2 wait time", self.averageQ2Time)
+        # print
+        print "%60s:  %5.2f  minutes     [ Q1:%5.2f minutes   Q2:%5.2f minutes ]" % ("Average waiting time for all customers", self.averageWaitingTime, self.averageQ1Time, self.averageQ2Time)
+        print "%60s:  %5.2f  minutes     [ Q1:%5.2f minutes   Q2:%5.2f minutes ]" % ("Average waiting time for customers who wait", self.averageWaitingTimeWhoWait, self.averageQ1TimeWait, self.averageQ2TimeWait)
+        print "%60s:  %5.2f  minutes     [ Q1:%5.2f minutes   Q2:%5.2f minutes ]" % ("Average service time", self.averageServiceTime, self.averageService1Time, self.averageService2Time)
+        print "%60s:  %5d  %%           [ Q1: %4d %%         Q2: %4d %%       ]" % ("Probability a customer has to wait", self.waitProbability * 100, self.wait1Probability * 100, self.wait2Probability * 100)
         print "%60s:  %5.2f  minutes" % ("Average time between arrivals", self.averageInterarrrivalTime)
         print "%60s:  %5.2f  minutes" % ("Average time each customer spends in system", self.averageSystemTime)
-        print "%60s:  %5d  %%" % ("Probability a customer has to wait in Q1", self.wait1Probability * 100)
-        print "%60s:  %5d  %%" % ("Probability a customer has to wait in Q2", self.wait2Probability * 100)
+        # print "%60s:  %5d  %%" % ("Probability a customer has to wait in Q2", self.wait2Probability * 100)
         # print "%60s:  %5d  %%" % ("Percentage of time server is idle", self.idleProbability * 100)
 
 
@@ -212,7 +229,11 @@ def runTrials(numTrials=10, numCustomers=10, verbose=True):
     averageQ2Time = 0
     averageWaitingTime = 0
     averageWaitingTimeWhoWait = 0
+    averageQ1TimeWait = 0
+    averageQ2TimeWait = 0
     averageServiceTime = 0
+    averageService1Time = 0
+    averageService2Time = 0
     averageInterarrrivalTime = 0
     averageSystemTime = 0
     waitProbability = 0
@@ -235,7 +256,11 @@ def runTrials(numTrials=10, numCustomers=10, verbose=True):
         averageQ2Time += trial.averageQ2Time
         averageWaitingTime += trial.averageWaitingTime
         averageWaitingTimeWhoWait += trial.averageWaitingTimeWhoWait
+        averageQ1TimeWait += trial.averageQ1TimeWait
+        averageQ2TimeWait += trial.averageQ2TimeWait
         averageServiceTime += trial.averageServiceTime
+        averageService1Time += trial.averageService1Time
+        averageService2Time += trial.averageService2Time
         averageInterarrrivalTime += trial.averageInterarrrivalTime
         averageSystemTime += trial.averageSystemTime
         waitProbability += trial.waitProbability
@@ -248,7 +273,11 @@ def runTrials(numTrials=10, numCustomers=10, verbose=True):
     averageWaitingTime /= numTrials
     averageWaitingTime /= numTrials
     averageWaitingTimeWhoWait /= numTrials
+    averageQ1TimeWait /= numTrials
+    averageQ2TimeWait /= numTrials
     averageServiceTime /= numTrials
+    averageService1Time /= numTrials
+    averageService2Time /= numTrials
     averageInterarrrivalTime /= numTrials
     averageSystemTime /= numTrials
     waitProbability /= numTrials
@@ -260,16 +289,17 @@ def runTrials(numTrials=10, numCustomers=10, verbose=True):
     print '-'*79
     print "Averages for %d Completed Trials (%d Customers per Trial):" % (numTrials, numCustomers)
     print '-'*79
-    print "%60s:  %5.2f  minutes" % ("Average Q1 wait time", averageQ1Time)
-    print "%60s:  %5.2f  minutes" % ("Average Q2 wait time", averageQ2Time)
-    print
-    print "%60s:  %5.2f  minutes" % ("Average total waiting time for all customers", averageWaitingTime)
-    print "%60s:  %5.2f  minutes" % ("Average waiting time for customers who wait", averageWaitingTimeWhoWait)
-    print "%60s:  %5.2f  minutes" % ("Average total service time", averageServiceTime)
+    # print "%60s:  %5.2f  minutes" % ("Average Q1 wait time", averageQ1Time)
+    # print "%60s:  %5.2f  minutes" % ("Average Q2 wait time", averageQ2Time)
+    # print
+    print "%60s:  %5.2f  minutes     [ Q1:%5.2f minutes   Q2:%5.2f minutes ]" % ("Average waiting time for all customers", averageWaitingTime, averageQ1Time, averageQ2Time)
+    print "%60s:  %5.2f  minutes     [ Q1:%5.2f minutes   Q2:%5.2f minutes ]" % ("Average waiting time for customers who wait", averageWaitingTimeWhoWait, averageQ1TimeWait, averageQ2TimeWait)
+    print "%60s:  %5.2f  minutes     [ Q1:%5.2f minutes   Q2:%5.2f minutes ]" % ("Average service time", averageServiceTime, averageService1Time, averageService2Time)
+    print "%60s:  %5d  %%           [ Q1: %4d %%         Q2: %4d %%       ]" % ("Probability a customer has to wait", waitProbability * 100, wait1Probability * 100, wait2Probability * 100)
     print "%60s:  %5.2f  minutes" % ("Average time between arrivals", averageInterarrrivalTime)
     print "%60s:  %5.2f  minutes" % ("Average time each customer spends in system", averageSystemTime)
-    print "%60s:  %5d  %%" % ("Probability a customer has to wait in Q1", wait1Probability * 100)
-    print "%60s:  %5d  %%" % ("Probability a customer has to wait in Q2", wait2Probability * 100)
+    # print "%60s:  %5d  %%" % ("Probability a customer has to wait in Q1", wait1Probability * 100)
+    # print "%60s:  %5d  %%" % ("Probability a customer has to wait in Q2", wait2Probability * 100)
     # print "%60s:  %5d  %%" % ("Percentage of time server is idle", idleProbability * 100)
 
 
