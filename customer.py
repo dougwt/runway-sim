@@ -12,7 +12,8 @@
 # TODO: Assumptions
 
 class Customer():
-    def __init__(self, id, probInterarrival, probService1, probService2, probBalk, prevCust, clock):
+    def __init__(self, id, probInterarrival, probService1, probService2,
+            probBalk, prevCust, clock):
         """Initializes customer data based on initial data."""
         self.id = id                                # order of arrival
         self.probInterarrival = probInterarrival
@@ -20,6 +21,7 @@ class Customer():
         self.probService2 = probService2
         self.probBalk = probBalk
 
+        # initialize values from previous customer
         if prevCust:
             prevServiceTime1Begins = prevCust.serviceTime1Begins
             prevServiceTime1Ends = prevCust.serviceTime1Ends
@@ -37,45 +39,30 @@ class Customer():
         self.serviceTime2 = self.calcServiceTime2(probService2)
         self.balk = self.calcBalk(probBalk)
 
-        # Q1/S1
+        # process Q1/S1
         self.arrivalTime1 = clock + self.interarrivalTime
         self.serviceTime1Begins = max(self.arrivalTime1, prevServiceTime1Ends)
         self.serviceTime1Ends = self.serviceTime1Begins + self.serviceTime1
         self.waitTime1 = self.serviceTime1Begins - self.arrivalTime1
 
-        # Q2/S2
+        # process Q2/S2
         if self.balk is False:
             self.arrivalTime2 = self.serviceTime1Ends
             self.serviceTime2Begins = max(self.arrivalTime2, prevServiceTime2Ends)
             self.serviceTime2Ends = self.serviceTime2Begins + self.serviceTime2
             self.waitTime2 = self.serviceTime2Begins - self.arrivalTime2
-
-            # serviceTimeBegins - arrivalTime1
             self.totalWait = self.waitTime1 + self.waitTime2
-
-            # serviceTimeEnds - arrivalTime1
             self.timeInSystem = self.serviceTime2Ends - self.arrivalTime1
-
-            # serviceTimeBegins - previous end time
-            self.idleTime = (self.serviceTime1Begins - prevServiceTime1Ends) + (self.serviceTime2Begins - prevServiceTime2Ends)
+            self.idleTime = (self.serviceTime1Begins - prevServiceTime1Ends) \
+                + (self.serviceTime2Begins - prevServiceTime2Ends)
         else:
             self.arrivalTime2 = self.serviceTime1Ends
             self.serviceTime2Begins = prevServiceTime2Begins
             self.serviceTime2Ends = prevServiceTime2Ends
             self.waitTime2 = 0
-
-            # serviceTimeBegins - arrivalTime1
-            # self.q1wait =
             self.totalWait = self.waitTime1 + self.waitTime2
-
-            # serviceTimeEnds - arrivalTime1
             self.timeInSystem = self.serviceTime1Ends - self.arrivalTime1
-
-            # serviceTimeBegins - previous end time
             self.idleTime = (self.serviceTime1Begins - prevServiceTime1Ends)
-
-        # increments current clock time
-        # clock += interarrivalTime
 
     def __str__(self):
         """Used to generate a columned printout of customers."""
@@ -132,26 +119,3 @@ class Customer():
     def calcBalk(self, probBalk):
         """Maps a probability distribution to balk decision."""
         return probBalk <= 0.33
-
-
-def counter():
-    """A generator that counts upwards from 1."""
-    id = 1;
-    while True:
-        yield id
-        id += 1
-
-def main():
-    import random
-    id = counter()
-    num = 10
-    random.seed(1234)
-    for i in xrange(10):
-        probInterarrival = random.random()
-        probService1 = random.random()
-        probService2 = random.random()
-        probBalk = random.random()
-        print Customer(id.next(), probInterarrival, probService1, probService2, probBalk, 10, 20)
-
-if __name__ == '__main__':
-    main()
