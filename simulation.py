@@ -327,6 +327,7 @@ def runTrials(numTrials=10, numCustomers=10, verbose=True):
 
     numTrials = float(numTrials)
     averageQ1Time /= numTrials
+    averageQ2Time /= numTrials
     averageWaitingTime /= numTrials
     averageWaitingTime /= numTrials
     averageWaitTimeWhoWait /= numTrials
