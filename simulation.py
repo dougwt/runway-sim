@@ -12,6 +12,7 @@
 # TODO: Assumptions
 
 from __future__ import division
+import array
 import random
 from customer import Customer
 from scipy.stats import poisson, expon
@@ -66,10 +67,15 @@ class Simulation():
 
         ### generate values for random variables
 
-        self.interarrivalTimeValues = list(poisson.rvs(4, 0, size=numCustomers))
-        self.serviceTime1Values = list(expon.rvs(6, 0, size=numCustomers))
-        self.serviceTime2Values = list(expon.rvs(8, 0, size=numCustomers))
+        self.interarrivalTimeValues = poisson.rvs(4, 0, size=numCustomers).tolist()
+        self.serviceTime1Values = expon.rvs(6, size=numCustomers).tolist()
+        self.serviceTime2Values = expon.rvs(8, size=numCustomers).tolist()
         self.balkValues = [random.random() for x in xrange(numCustomers)]
+
+        # print self.interarrivalTimeValues
+        # print expon.rvs(6, 0, size=numCustomers)
+        # print self.serviceTime2Values
+        # print self.balkValues
 
         self.populate() # Ready. Set. Go!
 
