@@ -14,6 +14,7 @@
 from __future__ import division
 import random
 from customer import Customer
+from scipy.stats import poisson, expon
 
 class Simulation():
     def __init__(self, numCustomers=100):
@@ -63,6 +64,13 @@ class Simulation():
         self.q1sizes = {}
         self.q2sizes = {}
 
+        ### generate values for random variables
+
+        self.interarrivalTimeValues = list(poisson.rvs(4, 0, size=numCustomers))
+        self.serviceTime1Values = list(expon.rvs(6, 0, size=numCustomers))
+        self.serviceTime2Values = list(expon.rvs(8, 0, size=numCustomers))
+        self.balkValues = [random.random() for x in xrange(numCustomers)]
+
         self.populate() # Ready. Set. Go!
 
     def populate(self):
@@ -111,12 +119,12 @@ class Simulation():
     def generateRandomValues(self):
         """Generates random value for Customer creation."""
 
-        probInterarrival = random.random()
-        probService1 = random.random()
-        probService2 = random.random()
-        probBalk = random.random()
+        interarrivalTime = int(self.interarrivalTimeValues.pop())
+        serviceTime1 = int(self.serviceTime1Values.pop())
+        serviceTime2 = int(self.serviceTime2Values.pop())
+        balk = False if self.balkValues.pop() > 0.15 else True
 
-        return (probInterarrival, probService1, probService2, probBalk)
+        return (interarrivalTime, serviceTime1, serviceTime2, balk)
 
     def calculateStats(self):
         """Calculates total and average stats."""
@@ -368,7 +376,7 @@ def runTrials(numTrials=10, numCustomers=10, verbose=True):
 
 def main():
     numTrials = 10
-    numCustomersPerTrial = 10
+    numCustomersPerTrial = 16
     displayStats = True
 
     # run multiple trials and display averages

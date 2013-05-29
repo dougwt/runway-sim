@@ -12,14 +12,14 @@
 # TODO: Assumptions
 
 class Customer():
-    def __init__(self, id, probInterarrival, probService1, probService2,
-            probBalk, prevCust, clock):
+    def __init__(self, id, interarrivalTime, serviceTime1, serviceTime2,
+            balk, prevCust, clock):
         """Initializes customer data based on initial data."""
         self.id = id                                # order of arrival
-        self.probInterarrival = probInterarrival
-        self.probService1 = probService1
-        self.probService2 = probService2
-        self.probBalk = probBalk
+        self.interarrivalTime = interarrivalTime
+        self.serviceTime1 = serviceTime1
+        self.serviceTime2 = serviceTime2
+        self.balk = balk
 
         # initialize values from previous customer
         if prevCust:
@@ -32,12 +32,6 @@ class Customer():
             prevServiceTime1Ends = 0
             prevServiceTime2Begins = 0
             prevServiceTime2Ends = 0
-
-        # map random values to appropriate probability distributions
-        self.interarrivalTime = self.calcInterarrivalTime(probInterarrival)
-        self.serviceTime1 = self.calcServiceTime1(probService1)
-        self.serviceTime2 = self.calcServiceTime2(probService2)
-        self.balk = self.calcBalk(probBalk)
 
         # process Q1/S1
         self.arrivalTime1 = clock + self.interarrivalTime
@@ -67,10 +61,14 @@ class Customer():
     def __str__(self):
         """Used to generate a columned printout of customers."""
         values = (self.id,
-                  ('%.2f -> %d' % (self.probInterarrival, self.interarrivalTime))[1:],
-                  ('%.2f -> %d' % (self.probService1, self.serviceTime1))[1:],
-                  ('%.2f -> %d' % (self.probService2, self.serviceTime2))[1:],
-                  ('%.2f -> %s' % (self.probBalk, 'Y' if self.balk else '-'))[1:],
+                  # ('%.2f -> %d' % (self.probInterarrival, self.interarrivalTime))[1:],
+                  # ('%.2f -> %d' % (self.probService1, self.serviceTime1))[1:],
+                  # ('%.2f -> %d' % (self.probService2, self.serviceTime2))[1:],
+                  # ('%.2f -> %s' % (self.probBalk, 'Y' if self.balk else '-'))[1:],
+                  self.interarrivalTime,
+                  self.serviceTime1,
+                  self.serviceTime2,
+                  'Y' if self.balk else '-',
                   self.arrivalTime1,
                   self.waitTime1,
                   self.serviceTime1Begins,
@@ -89,33 +87,33 @@ class Customer():
 
         return output
 
-    def calcInterarrivalTime(self, probInterarrival):
-        """Maps a probability distribution to interrarrival times."""
-        if probInterarrival < 0.2:
-            return 0
-        elif probInterarrival >= 0.2 and probInterarrival <= 0.6:
-            return 1
-        else:
-            return 2
+    # def calcInterarrivalTime(self, probInterarrival):
+    #     """Maps a probability distribution to interrarrival times."""
+    #     if probInterarrival < 0.2:
+    #         return 0
+    #     elif probInterarrival >= 0.2 and probInterarrival <= 0.6:
+    #         return 1
+    #     else:
+    #         return 2
 
-    def calcServiceTime1(self, probService1):
-        """Maps a probability distribution to serviceTime1."""
-        if probService1 < 0.2:
-            return 1
-        elif probService1 >= 0.2 and probService1 <= 0.6:
-            return 2
-        else:
-            return 3
+    # def calcServiceTime1(self, probService1):
+    #     """Maps a probability distribution to serviceTime1."""
+    #     if probService1 < 0.2:
+    #         return 1
+    #     elif probService1 >= 0.2 and probService1 <= 0.6:
+    #         return 2
+    #     else:
+    #         return 3
 
-    def calcServiceTime2(self, probService2):
-        """Maps a probability distribution to serviceTime2."""
-        if probService2 < 0.2:
-            return 1
-        elif probService2 >= 0.2 and probService2 <= 0.6:
-            return 2
-        else:
-            return 3
+    # def calcServiceTime2(self, probService2):
+    #     """Maps a probability distribution to serviceTime2."""
+    #     if probService2 < 0.2:
+    #         return 1
+    #     elif probService2 >= 0.2 and probService2 <= 0.6:
+    #         return 2
+    #     else:
+    #         return 3
 
-    def calcBalk(self, probBalk):
-        """Maps a probability distribution to balk decision."""
-        return probBalk <= 0.33
+    # def calcBalk(self, probBalk):
+    #     """Maps a probability distribution to balk decision."""
+    #     return probBalk <= 0.33
