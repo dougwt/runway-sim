@@ -68,7 +68,7 @@ class Customer():
                   self.interarrivalTime,
                   self.serviceTime1,
                   self.serviceTime2,
-                  'Y' if self.balk else '-',
+                  # 'Y' if self.balk else '-',
                   self.arrivalTime1,
                   self.waitTime1,
                   self.serviceTime1Begins,

@@ -67,10 +67,10 @@ class Simulation():
 
         ### generate values for random variables
 
-        self.interarrivalTimeValues = poisson.rvs(4, 0, size=numCustomers).tolist()
-        self.serviceTime1Values = expon.rvs(6, size=numCustomers).tolist()
-        self.serviceTime2Values = expon.rvs(8, size=numCustomers).tolist()
-        self.balkValues = [random.random() for x in xrange(numCustomers)]
+        self.interarrivalTimeValues = poisson.rvs(2, 0, size=numCustomers).tolist()
+        self.serviceTime1Values = expon.rvs(1, size=numCustomers).tolist()
+        self.serviceTime2Values = expon.rvs(2, size=numCustomers).tolist()
+        self.balkValues = [0.99 for x in xrange(numCustomers)]
 
         # print self.interarrivalTimeValues
         # print expon.rvs(6, 0, size=numCustomers)
@@ -204,7 +204,7 @@ class Simulation():
                    ('Inter', 'Arrival'),
                    ('S1', 'Time'),
                    ('S2', 'Time'),
-                   ('', 'Balk?'),
+                   # ('', 'Balk?'),
                    ('Arrival', 'Time'),
                    ('Q1', 'Wait'),
                    ('S1 Start', 'Time'),
