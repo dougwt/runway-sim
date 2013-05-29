@@ -67,9 +67,10 @@ class Simulation():
 
         ### generate values for random variables
 
-        self.interarrivalTimeValues = poisson.rvs(2, 0, size=numCustomers).tolist()
-        self.serviceTime1Values = expon.rvs(1, size=numCustomers).tolist()
-        self.serviceTime2Values = expon.rvs(2, size=numCustomers).tolist()
+        self.SCALE = 60
+        self.interarrivalTimeValues = poisson.rvs(1.5*self.SCALE, 0, size=numCustomers).tolist()
+        self.serviceTime1Values = expon.rvs(1.5*self.SCALE, size=numCustomers).tolist()
+        self.serviceTime2Values = expon.rvs(2*self.SCALE, size=numCustomers).tolist()
         self.balkValues = [0.99 for x in xrange(numCustomers)]
 
         # print self.interarrivalTimeValues
@@ -251,7 +252,7 @@ class Simulation():
                               str(q2size).center(field_width))
         print
 
-        h = "%60s:  %5.2f  minutes     [ Q1:%5.2f minutes   Q2:%5.2f minutes ]"
+        h = "%60s:  %4d  seconds     [ Q1:%4d seconds   Q2:%4d seconds ]"
         print h % ("Average waiting time for all customers",
                    self.averageWaitingTime,
                    self.averageQ1Time,
@@ -265,19 +266,19 @@ class Simulation():
                    self.averageService1Time,
                    self.averageService2Time)
 
-        h = "%60s:  %5d  %%           [ Q1: %4d %%         Q2: %4d %%       ]"
+        h = "%60s:  %4d  %%           [ Q1: %3d %%         Q2: %3d %%       ]"
         print h % ("Probability a customer has to wait",
                    self.waitProbability * 100,
                    self.wait1Probability * 100,
                    self.wait2Probability * 100)
 
-        h = "%60s:  %5.2f  minutes"
+        h = "%60s:  %4d  seconds"
         print h % ("Average time between arrivals",
                    self.averageInterarrrivalTime)
         print h % ("Average time each customer spends in system",
                    self.averageSystemTime)
 
-        # print "%60s:  %5d  %%" % ("Probability a customer has to wait in Q2",
+        # print "%60s:  %4d  %%" % ("Probability a customer has to wait in Q2",
         #                           self.wait2Probability * 100)
 
 
@@ -347,10 +348,10 @@ def runTrials(numTrials=10, numCustomers=10, verbose=True):
     print "Averages for %d Completed Trials (%d Customers per Trial):" % (
         numTrials, numCustomers)
     print '-'*79
-    # print "%60s:  %5.2f  minutes" % ("Average Q1 wait time", averageQ1Time)
-    # print "%60s:  %5.2f  minutes" % ("Average Q2 wait time", averageQ2Time)
+    # print "%60s:  %5.2f  seconds" % ("Average Q1 wait time", averageQ1Time)
+    # print "%60s:  %5.2f  seconds" % ("Average Q2 wait time", averageQ2Time)
     # print
-    h = "%60s:  %5.2f  minutes     [ Q1:%5.2f minutes   Q2:%5.2f minutes ]"
+    h = "%60s:  %4d  seconds     [ Q1:%4d seconds   Q2:%4d seconds ]"
     print h % ("Average waiting time for all customers",
                averageWaitingTime,
                averageQ1Time,
@@ -364,17 +365,17 @@ def runTrials(numTrials=10, numCustomers=10, verbose=True):
                averageService1Time,
                averageService2Time)
 
-    h = "%60s:  %5d  %%           [ Q1: %4d %%         Q2: %4d %%       ]"
+    h = "%60s:  %4d  %%           [ Q1: %3d %%         Q2: %3d %%       ]"
     print h % ("Probability a customer has to wait",
                waitProbability * 100,
                wait1Probability * 100,
                wait2Probability * 100)
 
-    h = "%60s:  %5.2f  minutes"
+    h = "%60s:  %4d  seconds"
     print h % ("Average time between arrivals", averageInterarrrivalTime)
     print h % ("Average time each customer spends in system", averageSystemTime)
 
-    # h = "%60s:  %5d  %%"
+    # h = "%60s:  %4d  %%"
     # print h % ("Probability a customer has to wait in Q1", wait1Probability * 100)
     # print h % ("Probability a customer has to wait in Q2", wait2Probability * 100)
     # print h % ("Percentage of time server is idle", idleProbability * 100)
